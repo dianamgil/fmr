@@ -1,7 +1,7 @@
 {
-  "name": "Phd Fernando Martin",
-  "role": "Professor of [Department]",
-  "university": "University Name",
+  "name": "Phd Fernando Martin Rivera",
+  "role": "Departamento de Educación Física y Deporte",
+  "university": "Universidad de Valencia",
   "avatar": "/images/avatar.jpg",
   "bio": "Short professional description (2-3 lines).",
   "email": "professor@university.edu",
@@ -10,14 +10,15 @@
     "backgroundColor": "#f5f5f5"
   },
   "socials": [
-    { "name": "LinkedIn", "url": "https://linkedin.com/in/...", "icon": "linkedin" },
+    { "name": "LinkedIn", "url": "https://es.linkedin.com/in/fernando-martin-rivera-88615835", "icon": "linkedin" },
     { "name": "ORCID", "url": "https://orcid.org/...", "icon": "orcid" },
     { "name": "GitHub", "url": "https://github.com/...", "icon": "github" }
+    
   ],
   "links": [
-    { "title": "Curriculum Vitae", "url": "/cv", "icon": "document" },
-    { "title": "Publications", "url": "/publications", "icon": "book" },
-    { "title": "ResearchGate", "url": "https://researchgate.net/...", "icon": "external" },
+    { "title": "Curriculum Vitae", "url": "/documents/cv.pdf", "icon": "document" },
+    { "title": "Google Scholar", "url": "https://scholar.google.es/citations?hl=es&pli=1&user=nyB21DUAAAAJ", "icon": "book" },
+    { "title": "ResearchGate", "url": "https://www.researchgate.net/profile/Fernando-Martin-Rivera?ev=hdr_xprf", "icon": "external" },
     { "title": "Projects", "url": "/projects", "icon": "folder" }
   ]
 }
