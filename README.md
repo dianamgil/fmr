@@ -1,6 +1,6 @@
-### PROYECTO PILOTO DE WEB ACADÉMICA 
+# PROYECTO PILOTO DE WEB ACADÉMICA 
 
-# Astro para maximizar el SEO y conseguir una carga instantánea mediante la generación de sitios estáticos (SSG), reduciendo el JavaScript enviado al cliente a cero
+### Astro para maximizar el SEO y conseguir una carga instantánea mediante la generación de sitios estáticos (SSG), reduciendo el JavaScript enviado al cliente a cero
 
 # Astro Starter Kit: Minimal
 
