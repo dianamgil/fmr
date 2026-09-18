@@ -32,6 +32,7 @@ const userCollection = defineCollection({
       })
     ),
     publications: z.array(
+        //fichero .json debe tener este mismo schema 
       z.object({
          id: z.string(), // Agregar un campo "id" para cada publicación, Escalable con Nest.js para clave primaria
         title: z.string(),

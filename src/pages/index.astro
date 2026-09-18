@@ -1,8 +1,13 @@
 ---
+
+import { getUser } from '../lib/getUser';
 import ProfileHeader from '../components/ProfileHeader.astro';
 import SocialIcons from '../components/SocialIcons.astro';
 import LinkButton from '../components/LinkButton.astro';
-import user from '../data/user.json';
+import '../styles/global.css';
+
+const user = await getUser(); // esto permite que si user no existe, la página falle en lugar de renderizarse con datos indefinidos
+
 ---
 
 <html lang="en">
