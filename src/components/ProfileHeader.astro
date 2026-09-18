@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  user: Pick<CollectionEntry<'user'>['data'], 'name' | 'role' | 'university' | 'avatar' | 'bio'>;
+}
+const { user } = Astro.props;
+---
+
+\\ 
+<header class="flex flex-col items-center text-center gap-1 py-8 px-4">
+  <img
+    src={user.avatar}
+    alt={user.name}
+    width="96"
+    height="96"
+    loading="eager"
+    fetchpriority="high"
+    class="w-24 h-24 rounded-full border-4 border-white shadow-md object-cover"
+  /> <!--loading y fetchpriority= fuerzan carga inmediata y prioritaria del avatar  -->
+
+
+  <h1 class="text-xl font-bold mt-4">{user.name}</h1>
+  <p class="text-sm text-slate-500 font-medium">{user.role}</p>
+  <p class="text-xs text-slate-400 mt-1">{user.university}</p>
+  <p class="text-sm text-slate-600 mt-4 px-2 max-w-md">{user.bio}</p>
+</header>
