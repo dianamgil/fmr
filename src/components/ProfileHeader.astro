@@ -7,8 +7,8 @@ export interface Props {
 const { user } = Astro.props;
 ---
 
-\\ 
-<header class="flex flex-col items-center text-center gap-1 py-8 px-4">
+
+<header class="flex flex-col items-center text-center gap-1 py-10 px-4">
   <img
     src={user.avatar}
     alt={user.name}
@@ -16,12 +16,12 @@ const { user } = Astro.props;
     height="96"
     loading="eager"
     fetchpriority="high"
-    class="w-24 h-24 rounded-full border-4 border-white shadow-md object-cover"
+    class="w-24 h-24 rounded-full border-4 border-white shadow-sm object-cover"
   /> <!--loading y fetchpriority= fuerzan carga inmediata y prioritaria del avatar  -->
 
 
-  <h1 class="text-xl font-bold mt-4">{user.name}</h1>
-  <p class="text-sm text-slate-500 font-medium">{user.role}</p>
-  <p class="text-xs text-slate-400 mt-1">{user.university}</p>
-  <p class="text-sm text-slate-600 mt-4 px-2 max-w-md">{user.bio}</p>
+    <h1 class="text-xl md:text-2xl lg:text-3xl font-bold mt-4">{user.name}</h1> <!-- responsive -->
+  <p class="text-sm md:text-base text-slate-500 font-medium">{user.role}</p> <!-- responsive -->
+  <p class="text-xs md:text-sm text-slate-400 mt-1">{user.university}</p> <!-- responsive -->
+  <p class="text-sm md:text-base text-slate-600 mt-4 px-2 max-w-md lg:max-w-lg">{user.bio}</p> <!-- responsive: el ancho máximo del bio crece en desktop -->
 </header>

@@ -13,10 +13,9 @@ const user = await getUser(); // esto permite que si user no existe, la página 
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{user.name}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
   </head>
-  <body class=".bg-slate-50 text-slate-800 flex flex-col items-center min-h-screen p-6">
+  <body class="bg-slate-50 text-slate-800 flex flex-col items-center min-h-screen p-6">
     <main class="w-full max-w-md flex flex-col items-center mt-8">
       <ProfileHeader user={user} />
       <SocialIcons socials={user.socials} />

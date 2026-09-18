@@ -1,5 +1,8 @@
 # Project Context Summary — Academic Personal Website (bio.link-style)
 
+ESTE PROYECTO SE HARÁ PASO A PASO, SIGUIENDO MIS INSTRUCCIONES. LO QUE SE AHCE EN ÉL LO ESCRIBO YO BASANDOSE EN LO SIGUIENTE:
+
+
 ## 1. Purpose & Business Context
 - Client: a university professor requesting a personal academic website.
 - Developer intent: build this as a **reusable template** to resell/replicate to other professors (junior dev, first freelance portfolio piece).
@@ -20,6 +23,9 @@
 2. Scalable/replicable to other professors — user explicitly directs that all decisions assume a **future migration to a full backend ("Option B": NestJS + database + JWT auth)**, even while current implementation stays static. The Zod schema is treated as the future DB schema/DTO source of truth. Data-fetching logic must stay centralized/abstracted to ease that migration.
 3. Security against attacks — no user-facing forms/uploads exist yet; when built (future publications upload form), must include file-type/size validation and auth.
 4. Strict data validation at the input layer (this is why Zod/Content Collections replaced hand-written TypeScript interfaces).
+
+5. **Responsive design** — mandatory on every component/page, mobile-first. Use Tailwind breakpoints `sm:`, `md:`, `lg:` (and up) for sizing/spacing/typography rather than fixed values. Mark responsive rules with a short inline comment in the component (e.g. `<!-- responsive: ... -->`) so intent stays visible. Workflow order: (1) build/validate the base (unprefixed = mobile) styles first, (2) only then layer `sm:`, `md:`, `lg:` (and up) where the layout actually needs to change at that breakpoint — no breakpoint is added speculatively.
+
 
 Deferred scaling options (documented, not started):
 - **Decap CMS** (git-based headless CMS, no backend) — for professor self-service editing without touching code.

@@ -9,7 +9,7 @@ const userCollection = defineCollection({
     role: z.string(),
     university: z.string(),
     avatar: z.string(),
-    bio: z.string(),
+    bio: z.string() .max(150), // límite funcional: bio del ProfileHeader no puede superar 50 caracteres
     email: z.string().email(),
     cv: z.string(),
     theme: z.object({
