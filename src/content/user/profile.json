@@ -1,5 +1,5 @@
 {
-  "name": "Phd Fernando Martin Rivera",
+  "name": "Fernando Martin Rivera, PhD",
   "role": "Departamento de Educación Física y Deporte",
   "university": "Universidad de Valencia",
   "avatar": "/images/avatar_fmr.webp",
@@ -12,8 +12,7 @@
   },
  "socials": [
     { "name": "LinkedIn", "url": "https://es.linkedin.com/in/fernando-martin-rivera-88615835", "icon": "linkedin" },
-    { "name": "ORCID", "url": "https://orcid.org/...", "icon": "orcid" },
-    { "name": "GitHub", "url": "https://github.com/...", "icon": "github" }
+    { "name": "Facebook", "url": "https://www.facebook.com/fernando.martinrivera/", "icon": "facebook" }
   ],
   "links": [
     { "title": "Curriculum Vitae", "url": "/documents/cv.pdf", "icon": "document" },
