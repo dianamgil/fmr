@@ -20,6 +20,7 @@
 2. Scalable/replicable to other professors — user explicitly directs that all decisions assume a **future migration to a full backend ("Option B": NestJS + database + JWT auth)**, even while current implementation stays static. The Zod schema is treated as the future DB schema/DTO source of truth. Data-fetching logic must stay centralized/abstracted to ease that migration.
 3. Security against attacks — no user-facing forms/uploads exist yet; when built (future publications upload form), must include file-type/size validation and auth.
 4. Strict data validation at the input layer (this is why Zod/Content Collections replaced hand-written TypeScript interfaces).
+5. **Responsive design** — mandatory on every component/page, mobile-first. Use Tailwind breakpoints (`md:`, `lg:`) for sizing/spacing/typography rather than fixed values. Mark responsive rules with a short inline comment in the component (e.g. `<!-- responsive: ... -->`) so intent stays visible. `ProfileHeader.astro` (avatar, heading, text, padding) is the first component updated under this requirement; not yet visually verified across breakpoints.
 
 Deferred scaling options (documented, not started):
 - **Decap CMS** (git-based headless CMS, no backend) — for professor self-service editing without touching code.
