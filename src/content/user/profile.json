@@ -13,11 +13,14 @@
  "socials": [
     { "name": "LinkedIn", "url": "https://es.linkedin.com/in/fernando-martin-rivera-88615835", "icon": "linkedin" },
     { "name": "Facebook", "url": "https://www.facebook.com/fernando.martinrivera/", "icon": "facebook" },
-    { "name": "email", "url": "mailto:fernando.martin-rivera@uv.es", "icon": "email" }
+    { "name": "email-box", "url": "mailto:fernando.martin-rivera@uv.es", "icon": "email" },
+    { "name": "ResearchGate", "url": "https://www.researchgate.net/profile/Fernando-Martin-Rivera?ev=hdr_xprf", "icon": "researchgate" },
+    { "name": "Google Scholar", "url": "https://scholar.google.es/citations?hl=es&pli=1&user=nyB21DUAAAAJ", "icon": "google-scholar" }
+    
   ],
   "links": [
-    { "title": "Google Scholar", "url": "https://scholar.google.es/citations?hl=es&pli=1&user=nyB21DUAAAAJ", "icon": "book" },
-    { "title": "ResearchGate", "url": "https://www.researchgate.net/profile/Fernando-Martin-Rivera?ev=hdr_xprf", "icon": "external" },
+    { "title": "Google Scholar", "url": "https://scholar.google.es/citations?hl=es&pli=1&user=nyB21DUAAAAJ", "icon": "google-scholar" },
+    { "title": "ResearchGate", "url": "https://www.researchgate.net/profile/Fernando-Martin-Rivera?ev=hdr_xprf", "icon": "researchgate" },
     { "title": "Projects", "url": "/projects", "icon": "folder" },
     { "title": "CV", "url": "documents/cv_fmartinr.pdf", "icon": "document" }
   ],
