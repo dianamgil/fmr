@@ -9,14 +9,16 @@ export interface Props {
 
 const { title, url } = Astro.props; // recibe props title y url de cada link definido en profile.json
 
-const isExternal = url.startsWith('http'); // detecta links externos vs. rutas internas (/cv, /projects, etc.)
+const isExternal = url.startsWith('https'); // detecta links externos vs. rutas internas (/cv)
 ---
 
 <a
   href={url}
   target={isExternal ? '_blank' : undefined}
   rel={isExternal ? 'noopener noreferrer' : undefined}
-  class="w-full block text-center py-3 px-4 rounded-full bg-white text-slate-800 font-medium shadow-sm hover:shadow-md transition-shadow"
+  class="w-full block text-center py-3 px-4
+   rounded-full bg-white text-slate-800 font-medium 
+   shadow-sm hover:border-slate-800 hover:scale-[1.07] hover:shadow-2xl" 
 >
   <!-- responsive: w-full hereda el ancho máximo del contenedor padre (max-w-md en index.astro); no necesita breakpoints propios -->
   {title}
