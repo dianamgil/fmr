@@ -2,7 +2,12 @@ import { defineCollection, z } from 'astro:content'; // importa las funciones ne
 import { glob } from 'astro/loaders'; // importa el loader glob para buscar archivos con un patrón específico
 
 // Define schema de usuario con su loader y esquema de validación
+
+
+//nombrar colletion
 const userCollection = defineCollection({
+
+
   loader: glob({ pattern: '**/*.json', base: './src/content/user' }), //glob-->Buscador de archivos .json dentro de carpeta src/content/user
   schema: z.object({ //define estructura de datos esperada (reglas de validación de datos Zod)
     name: z.string(),

@@ -18,9 +18,16 @@ ESTE PROYECTO SE HARÁ PASO A PASO, SIGUIENDO MIS INSTRUCCIONES. LO QUE SE AHCE 
 - **Repo**: GitHub `dianamgil/fmr`, branch `main`. Contains real client data (not yet publication PDFs). Visibility (public/private) was discussed; user accepted risk since profile data is already public info, but flagged that published-article PDFs (copyright-restricted) must NOT be committed without rights confirmation — link to DOI/publisher instead when that's added.
 - **Local dev environment**: Windows, PowerShell, VS Code with official Astro extension. Project physically located at `C:\Users\d_mgi\Desktop\Portafolio_DMG\FMR_web\src\fmr`.
 
-## 3. Non-Functional Requirements (govern all architectural decisions) THIS A VERY IMPORTANT POINT 
+## 3. Non-Functional Requirements NFR (govern all architectural decisions) THIS A VERY IMPORTANT POINT 
 1. Maximize Lighthouse score.
-2. Scalable/replicable to other professors — user explicitly directs that all decisions assume a **future migration to a full backend ("Option B": NestJS + database + JWT auth)**, even while current implementation stays static. The Zod schema is treated as the future DB schema/DTO source of truth. Data-fetching logic must stay centralized/abstracted to ease that migration.
+2.  Scalable/replicable to other professors — "scalable" specifically means: this must be able to grow into a multi-tenant CMS/platform serving **hundreds of professor-users**
+
+"scalable" specifically means: this must be able to grow into a multi-tenant CMS/platform serving **hundreds of professor-users**, not just a manually copy-pasted static template per client. Breaks down into three dimensions:
+   - **Code scalability (maintenance & new features)** — the codebase must stay well-structured enough that adding a new screen/feature never breaks the rest of the site. Independent components (`ProfileHeader`, `LinkButton`, `SocialIcons`, etc.) keep concerns separated — changing a button's design must never touch data-fetching logic. Structure must also be clear enough that a new developer joining later can understand it fast without causing production regressions.
+   - **Data scalability (database & storage)** — the system must handle growth to many users/records (professors, publications) without slowing down. The Zod schema is treated as the future DB schema/DTO source of truth now, so the eventual real database (indexing, read/write separation, caching layer like Redis if needed) maps cleanly onto it instead of requiring a redesign. Data-fetching logic must stay centralized/abstracted (`getUser()` pattern) to ease that migration.
+   - **Server/infrastructure scalability** — depends on the hosting platform chosen at deploy time (Vercel, etc.), out of this project's direct control; assumption is that getting code scalability and data scalability right removes the main blockers, and infra scaling becomes mostly a deployment/ops concern rather than an architecture one.
+
+   User explicitly directs that all decisions assume a **future migration to a full backend ("Option B": NestJS + database + JWT auth)**, even while current implementation stays static. When a more scalable option has no Lighthouse cost, prefer it (e.g. `astro-icon` over hand-written inline SVGs for icons — same zero-JS build-time output, but scales to any icon any of those hundreds of future users might need, without editing code per-user).
 3. Security against attacks — no user-facing forms/uploads exist yet; when built (future publications upload form), must include file-type/size validation and auth.
 4. Strict data validation at the input layer (this is why Zod/Content Collections replaced hand-written TypeScript interfaces).
 

@@ -12,7 +12,8 @@
   },
  "socials": [
     { "name": "LinkedIn", "url": "https://es.linkedin.com/in/fernando-martin-rivera-88615835", "icon": "linkedin" },
-    { "name": "Facebook", "url": "https://www.facebook.com/fernando.martinrivera/", "icon": "facebook" }
+    { "name": "Facebook", "url": "https://www.facebook.com/fernando.martinrivera/", "icon": "facebook" },
+    { "name": "email", "url": "mailto:fernando.martin-rivera@uv.es", "icon": "email" }
   ],
   "links": [
     { "title": "Google Scholar", "url": "https://scholar.google.es/citations?hl=es&pli=1&user=nyB21DUAAAAJ", "icon": "book" },
