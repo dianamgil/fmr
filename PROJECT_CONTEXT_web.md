@@ -53,15 +53,39 @@ Deferred scaling options (documented, not started):
   - Contains the professor's profile data.
   - Currently contains a single profile entry with id `profile`.
   - The `publications` field is currently omitted and defaults to an empty array.
-  - ORCID and GitHub URLs are still placeholders and need to be filled in.
-  - Real client data is present in this file.
+ - Real client data is present in this file.
 
-- `src/lib/getUser.ts`
+`src/lib/getUser.ts`
   - Provides a centralized access point for the user profile data.
   - Uses Astro's `getEntry()` internally.
   - Pages should call `getUser()` rather than duplicating the data-access logic.
   - This abstraction is intentional and should make a future migration from Astro Content Collections to a real API easier.
 
+
+  - **`socials` and `links` were merged into a single unified `links` array** (see "Links data model" below) — the old two-array split (icons vs buttons) was dropped in favor of one array plus per-component id-based selection.
+  ### Links data model (unified `links` array)
+
+`profile.json`'s old separate `socials` (icons) and `links` (buttons) arrays were merged into ONE `links` array, each entry shaped as:
+```json
+{ "id": "linkedin", "name": "LinkedIn", "url": "https://...", "icon": "linkedin" }
+```
+- `id` — stable identifier per link (also lets components select by id; doubles as the future DB primary key, same convention as `publications[].id`).
+- `name` — display text (renamed from the old `title`/`name` split for consistency).
+- `url` — external URL or internal path (`/projects`); `LinkButton`/`SocialIcons` detect external vs internal via `url.startsWith('http')`.
+- `icon` — optional icon identifier resolved by `astro-icon` (`mdi:` set) or a local SVG in `src/icons/` (see below).
+
+The decision was to keep `profile.json`/Zod schema minimal (no per-link display metadata) and instead let each consuming component decide, Internally, which `id`s it renders (see "Component-level id filtering" below). This keeps the data shape simple while still being CMS-ready: a future CMS only needs to feed a component a list of ids (e.g. from checkboxes), it doesn't need to write back into every link's own record.
+
+### Component-level id filtering (temporary, CMS-ready pattern)
+
+`SocialIcons.astro` and the buttons-list component each receive the **entire** `links` array as a prop (never pre-filtered by the calling page) and filter it themselves against a hardcoded id list, e.g.:
+```ts
+const iconIds = ['linkedin', 'facebook', 'email']; // TEMPORARY — will become a prop fed by the CMS/backend later
+const filtered = socials.filter((link) => iconIds.includes(link.id));
+```
+Intent: `index.astro` never needs code changes to add/remove/reassign a link's display — today the id list is a literal constant inside the component (single-professor stage), but the component's own logic will not change when migrating to a CMS — only where that id list comes from will (constant → `Astro.props.ids`, populated from stored professor config/checkboxes). `index.astro` always passes the raw `user.links` array unfiltered: `<SocialIcons socials={user.links} />`.
+
+- 
 ### Architectural decision
 
 The current implementation uses Astro Content Collections for static, build-time data.
