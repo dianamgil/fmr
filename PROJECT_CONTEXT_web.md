@@ -89,7 +89,7 @@ ProfileHeader.astro — renders avatar, name, role, university, bio.
 - The component is currently used by `src/pages/index.astro`.
 Props type sourced from the auto-generated CollectionEntry type (not a hand-written interface) — consistent with the decision to remove manual TS interfaces in favor of Zod-derived types.
 
-SocialIcons.astro — Props { socials: Social[] }. Renders circular link icons. Currently a placeholder implementation: displays the first letter of each network's name instead of real brand icons/SVGs.
+SocialIcons.astro — Props { socials: Social[] }. Renders circular link icons using `astro-icon` (set `mdi` for linkedin/facebook/email) plus local SVGs in `src/icons/` (`researchgate.svg`, `google-scholar.svg`) for brands not covered by an installed icon set. A `localIcons` list decides whether `social.icon` is used as-is or prefixed with `mdi:`. Falls back to the network's first letter only if `icon` doesn't resolve to any known icon.
 
 LinkButton.astro — Props { title: string; url: string }. Renders a full-width pill button; detects external links via url.startsWith('http') to set target="_blank" rel="noopener noreferrer".
 

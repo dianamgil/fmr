@@ -1,25 +1,47 @@
 ---
-import type {CollectionEntry} from 'astro:content';
-type LinkItem = CollectionEntry<'user'>['data']['links'][number];
+import type { CollectionEntry } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+
+type LinkItem = CollectionEntry<'user'>['data']['links'][number]; // misma forma que usa LinkButton.astro; no es exclusivo de "redes sociales", es cualquier entrada de links
 
 export interface Props {
-  title: LinkItem['title'];
-  url: LinkItem['url'];
+  socials: LinkItem[]; // recibe el array COMPLETO de links a propósito: la selección de cuáles mostrar vive DENTRO de este componente, no en la página que lo llama
 }
 
-const { title, url } = Astro.props; // recibe props title y url de cada link definido en profile.json
+const { socials } = Astro.props;
 
-const isExternal = url.startsWith('https'); // detecta links externos vs. rutas internas (/cv)
+// TEMPORAL: qué ids se muestran como icono aquí, hardcodeado mientras no hay CMS.
+// Cuando llegue el backend/CMS, esta constante se sustituye por una prop (ej. `ids` recibida
+// desde fuera, ya calculada a partir de lo que user eligió) 
+const iconIds = ['rg', 'gs', 'cv', 'projects'];
+
+const filtered = socials.filter((social) => iconIds.includes(social.id)); // solo itera los links seleccionados, no el array completo
+
+const localIcons = ['researchgate', 'google-scholar']; // iconos propios en src/icons/, no del paquete MDI
 ---
 
-<a
-  href={url}
-  target={isExternal ? '_blank' : undefined}
-  rel={isExternal ? 'noopener noreferrer' : undefined}
-  class="w-full block text-center py-3 px-4
-   rounded-full bg-white text-slate-800 font-medium 
-   shadow-sm hover:border-slate-800 hover:scale-[1.07] hover:shadow-2xl" 
->
-  <!-- responsive: w-full hereda el ancho máximo del contenedor padre (max-w-md en index.astro); no necesita breakpoints propios -->
-  {title}
-</a>
+
+
+<div class="w-full flex flex-col  gap-3 md:gap-4 mt-4"> <!-- responsive: más espacio entre botones desde md -->
+   {filtered.map((social) => {
+    const isExternal = social.url.startsWith('http'); // detecta links externos (rg, gs) vs. internos (/projects)
+    return (
+      <a
+        href={social.url}
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
+        class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-white text-slate-700 font-semibold shadow-sm hover:border-slate-800 hover:scale-[1.07] hover:shadow-lg"
+      >
+        <Icon
+          name={
+            localIcons.includes(social.icon ?? '')
+              ? social.icon
+              : `mdi:${social.icon}`
+          }
+          class="w-5 h-5 shrink-0"
+        />
+        <span>{social.name}</span>
+      </a>
+    );
+  })}
+</div>

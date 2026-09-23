@@ -21,18 +21,13 @@ const userCollection = defineCollection({
       primaryColor: z.string(),
       backgroundColor: z.string()
     }),
-     socials: z.array(
-      z.object({
-        name: z.string(),
-        url: z.string().url(),
-        icon: z.string().optional(),
-      })
-    ),
+       
     links: z.array(
       z.object({
-        title: z.string(),
+        id: z.string(), // Agregar un campo "id" para cada publicación, Escalable con Nest.js.(repeatable, future CRUD/DB rows)
+        name: z.string(),
         url: z.string(),
-        icon: z.string().optional(),
+        icon: z.string().optional()
       })
     ),
     publications: z.array(

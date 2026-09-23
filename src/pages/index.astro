@@ -8,6 +8,7 @@ import '../styles/global.css';
 
 const user = await getUser(); // esto permite que si user no existe, la página falle en lugar de renderizarse con datos indefinidos
 
+
 ---
 
 <html lang="es">
@@ -18,13 +19,11 @@ const user = await getUser(); // esto permite que si user no existe, la página 
   </head>
   <body class="bg-linear-to-r from-[#B0E0E6] to-[#E4F5F7] text-slate-800 flex flex-col items-center min-h-screen p-6"> <!-- degradado horizontal de fondo -->
     <main class="w-full max-w-md flex flex-col items-center mt-8">
+
       <ProfileHeader user={user} />
-      <SocialIcons socials={user.socials} />
-      <section class="w-full flex flex-col gap-3 mt-4">
-        {user.links.map((link) => (
-          <LinkButton title={link.title} url={link.url} />
-        ))}
-      </section>
+      <SocialIcons socials={user.links} />
+      <LinkButton  socials={user.links}  />
+
     </main>
   </body>
 </html>

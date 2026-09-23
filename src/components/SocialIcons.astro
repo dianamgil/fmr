@@ -1,30 +1,30 @@
 ---
-import type {CollectionEntry} from 'astro:content'; // importa  la colección 'user'
-import {Icon} from 'astro-icon/components'; // importa el componente Icon de astro-icon  
+import type { CollectionEntry } from 'astro:content';
+import { Icon } from 'astro-icon/components';
 
-
-type Social = CollectionEntry<'user'>['data']['socials'][number] // define el tipo Social como un objeto con propiedades name, url e icon
+type LinkItem = CollectionEntry<'user'>['data']['links'][number]; // misma forma que usa LinkButton.astro; no es exclusivo de "redes sociales", es cualquier entrada de links
 
 export interface Props {
-    socials : Social[]; // recibe un array de objetos Social, cada uno con propiedades name, url e icon
+  socials: LinkItem[]; // recibe el array COMPLETO de links a propósito: la selección de cuáles mostrar vive DENTRO de este componente, no en la página que lo llama
 }
 
-//VARIABLES 
-    const { socials }= Astro.props; // Declara la variable socials y le asigna el valor (atributos) de las props recibidas
-    const localIcons = ['researchgate', 'google-scholar']; // iconos propios en src/icons/ NO DEL PAQUETE MDI
-//ICONOS
+const { socials } = Astro.props;
 
+// TEMPORAL: qué ids se muestran como icono aquí, hardcodeado mientras no hay CMS.
+// Cuando llegue el backend/CMS, esta constante se sustituye por una prop (ej. `ids` recibida
+// desde fuera, ya calculada a partir de lo que user eligió) 
+const iconIds = ['in', 'facebook', 'email'];
+
+const filtered = socials.filter((social) => iconIds.includes(social.id)); // solo itera los links seleccionados, no el array completo
 
 
 ---
 
-<div class="flex gap-3 justify-center mt-4"> <!-- responsive: iconos con tamaño fijo (40px), suficientemente pequeños para no necesitar breakpoints propios -->
-  {socials.map((social) => {
+<div class="flex gap-3 justify-center mt-4">
+  {filtered.map((social) => {
     const isEmail = social.icon === 'email';
     const href = isEmail
-      ? social.url.startsWith('mailto:')
-        ? social.url
-        : `mailto:${social.url}`
+      ? social.url.startsWith('mailto:') ? social.url : `mailto:${social.url}`
       : social.url;
     return (
       <a
@@ -32,15 +32,13 @@ export interface Props {
         target={isEmail ? undefined : '_blank'}
         rel={isEmail ? undefined : 'noopener noreferrer'}
         aria-label={social.name}
-        class="w-10 h-10 flex items-center justify-center rounded-full bg-white text-slate-700 font-semibold shadow-sm hover:shadow-md hover:scale-[1.05] transition-all"
+        class="w-10 h-10 flex items-center justify-center rounded-full bg-white text-slate-700 font-semibold shadow-sm hover:border-slate-800 hover:scale-[1.07] hover:shadow-2xl"
       >
-      
-       <Icon name={ 
-        localIcons.includes(social.icon ?? '')
-         ? social.icon  // si el icono está en localIcons, usa el nombre del icono directamente;
-         : `mdi:${social.icon}`} // sino, usa el prefijo 'mdi:' para buscarlo en el paquete MDI
-         class="w-5 h-5" /> 
-      </a>  
+        <Icon
+          name={ `mdi:${social.icon}`}
+          class="w-5 h-5"
+        />
+      </a>
     );
   })}
 </div>
