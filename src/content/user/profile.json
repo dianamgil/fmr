@@ -10,20 +10,33 @@
     "primaryColor": "#1a5f7a",
     "backgroundColor": "#f5f5f5"
   },
- "socials": [
-   
   
-    
-  ],
   "links": [
-    {"id":"gs", "name": "Google Scholar", "url": "https://scholar.google.es/citations?hl=es&pli=1&user=nyB21DUAAAAJ",  "icon": "google-scholar" } ,
-    { "id":"rg","name": "ResearchGate", "url": "https://www.researchgate.net/profile/Fernando-Martin-Rivera?ev=hdr_xprf", "icon": "researchgate" },
+    {"id":"gs_link", "name": "Google Scholar", "url": "https://scholar.google.es/citations?hl=es&pli=1&user=nyB21DUAAAAJ",  "icon": "google-scholar" } ,
+    { "id":"rg_link","name": "ResearchGate", "url": "https://www.researchgate.net/profile/Fernando-Martin-Rivera?ev=hdr_xprf", "icon": "researchgate" },
     { "id":"projects","name": "Projects", "url": "/projects", "icon": "folder"},
-    { "id":"cv","name": "CV", "url": "documents/cv_fmartinr.pdf", "icon": "file-account"},
-    { "id":"in","name": "LinkedIn", "url": "https://es.linkedin.com/in/fernando-martin-rivera-88615835", "icon": "linkedin" },
-    { "id": "facebook", "name": "Facebook", "url": "...", "icon": "facebook", "displayAs": ["icon"] },
-    { "id":"email","name": "email-box", "url": "mailto:fernando.martin-rivera@uv.es", "icon": "email" }
+    { "id":"cv_link","name": "CV", "url": "documents/cv_fmartinr.pdf", "icon": "file-account"},
+    { "id":"in_link","name": "LinkedIn", "url": "https://es.linkedin.com/in/fernando-martin-rivera-88615835", "icon": "linkedin" },
+    { "id": "facebook_link", "name": "Facebook", "url": "...", "icon": "facebook", "displayAs": ["icon"] },
+    { "id":"email_link","name": "email-box", "url": "mailto:fernando.martin-rivera@uv.es", "icon": "email" }
   ],
-   "publications": []
+
+  "teaching":[
+    {"subject": "Sistemática del movimiento","universidad": "Universitat de València","role": "Coordinador","period": "2019-"},
+    {"subject": "Ejercicio Físico para Poblaciones con Necesidades Especiales","universidad": "Universitat de València","period": "2023-2025"},
+    {"subject": "Supervisor IRA FCAFE (Consejo de Seguridad Nuclear)","universidad": "Universitat de València", "period": "2023-"},
+    {"subject": "Ejercicio Físico para Poblaciones con Necesidades Especiales","universidad": "Universitat de València","period": "2023-2025"},
+    {"subject": "Métodos y protocolos de readaptación en el deporte - MASTER", "universidad": "Universidad Católica de València","period": "2020-2025"},
+    {"subject": "Entrenamiento Deportivo: Preparación Física","universidad": "Universitat de València","period": "2019-2023"},
+    {"subject": "Diseño y planificación del entrenamiento personal MASTER", "universidad": "Universidad de Cádiz","period": "2019-2025"},
+    {"subject": "Trabajo fin de grado (TFG)","universidad": "Universitat de València","role": "Tutor","period": "2014-"},
+    {"subject": "Prácticas externas", "universidad": "Universitat de València","role": "Tutor", "period": "2014-"},
+    {"subject": "Planificación y evaluación de la actividad física y el deporte","universidad": "Universitat de València","role": "Coordinador","period": "2011-2020"},
+    {"subject": "High Intensity Interval Training y Trabajo hipopresivo en el deportista -MASTER","universidad": "Universidad Cardenal Herrera CEU Sevilla","period": "2015-2018"},
+    {"subject": "Readaptación del deportista lesionado- MASTER","universidad": "Universidad Católica de València","period": "2015-2018"}
+  
+  ],
+
+  "publications": []
 
 }

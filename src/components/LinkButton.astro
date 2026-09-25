@@ -13,7 +13,7 @@ const { socials } = Astro.props;
 // TEMPORAL: qué ids se muestran como icono aquí, hardcodeado mientras no hay CMS.
 // Cuando llegue el backend/CMS, esta constante se sustituye por una prop (ej. `ids` recibida
 // desde fuera, ya calculada a partir de lo que user eligió) 
-const iconIds = ['rg', 'gs', 'cv', 'projects'];
+const iconIds = ['rg_link', 'gs_link', 'cv_link', 'projects'];
 
 const filtered = socials.filter((social) => iconIds.includes(social.id)); // solo itera los links seleccionados, no el array completo
 
@@ -30,6 +30,7 @@ const localIcons = ['researchgate', 'google-scholar']; // iconos propios en src/
         href={social.url}
         target={isExternal ? '_blank' : undefined}
         rel={isExternal ? 'noopener noreferrer' : undefined}
+        aria-hidden="true"
         class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-white text-slate-700 font-semibold shadow-sm hover:border-slate-800 hover:scale-[1.07] hover:shadow-lg"
       >
         <Icon
