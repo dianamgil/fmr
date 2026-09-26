@@ -1,0 +1,16 @@
+---
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import Teaching from '../../components/Teaching.astro';
+import { getUser } from '../../lib/getUser';
+
+const user = await getUser(); //espera los datos del profesor 
+---
+
+
+<!-- contenido de componente Teaching.astro, que contiene la info de la sección "Teaching"-->
+<BaseLayout title={`${user.name} . Teaching`}>
+  <Sidebar user={user} slot = "sidebar" />
+  <Teaching user={user} />   
+</BaseLayout> 

@@ -1,0 +1,39 @@
+---
+
+import type {CollectionEntry} from 'astro:content'; //para tipar el array de links que se usaran
+
+export interface Props{
+    user  : Pick<CollectionEntry<'user'>['data'],'teaching'>; //tipado del los datos del .json solo la sección "teaching"
+}
+
+const { user } = Astro.props; //recoger os datos (props) que han llegado de .json
+
+---
+<!--
+<section class="w-full max-w-3xl">  [tw] ancho máximo del contenido 
+  <h1 class="text-2xl md:text-3xl font-bold mb-6">Docencia</h1> <!-- [tw] responsive: tamaño de texto 
+
+  <ul class="flex flex-col gap-6"> // lista en columna con separación 
+    {user.teaching.map((job) => { //itera cada asignatura
+
+          const hasDash = job.period.includes('-'); // detecta si es rango o año suelto 
+      const [startYear, endYear] = job.period.split('-'); // [At] separa el string del periodo 
+      const displayPeriod = !hasDash
+        ? startYear
+        : endYear
+          ? `${startYear}-${endYear}`
+          : `${startYear}-present`; //calcula qué texto de periodo mostrar
+      return (
+        // [tw] responsive: columna en móvil, fila desde sm 
+        <li class="flex flex-col sm:flex-row sm:gap-6"> 
+          <span class="text-sm text-slate-400 sm:w-32 sm:shrink-0">{displayPeriod}</span> 
+          <div>
+            <p class="font-semibold text-slate-800">{job.subject}</p> 
+            {job.role && <p class="text-sm text-slate-500">{job.role}</p>} 
+            <p class="text-sm text-slate-400">{job.universidad}</p> 
+          </div>
+        </li>
+      );
+    })}
+  </ul>
+</section> -->
