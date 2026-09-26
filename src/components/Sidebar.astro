@@ -1,8 +1,8 @@
 ---
 
 import type {CollectionEntry} from 'astro:content'; //para tipar el array de links que se usaran
-import {Icon} from 'astro-icon/components'; //tener opciones de iconos de MDI y locales
-import SocialIcons from './SocialIcons.astro'; //importar componente de iconos sociales
+import  SociaLinksIcons  from '../components/SociaLinksIcons.astro';
+import { Icon } from 'astro-icon/components';
 
 export interface Props{
     user: CollectionEntry<'user'>['data']; //tipado de la data del usuario
@@ -11,40 +11,49 @@ export interface Props{
 const {user} = Astro.props; 
 
 const nav = [
-  { label: 'Home', href: 'pages/index.astro' },
-  { label: 'Bio', href: '/bio' },
-  { label: 'Teaching', href: '/aboutme/teaching' },
-  { label: 'Research', href: '/aboutme/research' },
+  { label: 'Home', href: '' },
+  { label: 'Bio', href: 'bio' },
+  { label: 'Teaching', href: 'teaching' },
+  { label: 'Research', href: 'research' },
 ];
 ---
 
-<aside
-     class="fixed inset-y-0 left-0 w-60
+<!-- botón hamburguesa: siempre visible, abre/cierra el sidebar en cualquier tamaño -->
+
+
+<aside id="mySidenav"
+
+     class="fixed inset-y-0 left-0 w-70
      bg-linear-to-r from-[#B0E0E6] to-[#E4F5F7] 
-     overflow-y-auto p-6 flex flex-col gap-6"> <!-- [tw] fijo a la izquierda, altura completa, mismo degradado que el home -->
+     overflow-y-auto p-6 flex flex-col gap-6"> <!-- estilo global del sidebar -->
 
-   <section class="flex flex-col items-center gap-6">
-    <div class="flex flex-col items-start gap-2">
-
-        <!--perfil  -->
-        <h2 class="text-xl font-bold mt-4">Fernando Martin, PhD</h2>
+ <!-- bloque 1 perfil  -->
+   <section class="flex items-start gap-5 pb-6 border-b border-white/40">
+    <div class="flex flex-col gap-3">
+        <h2 class="text-2xl font-bold">Fernando Martin, PhD</h2>
         <p class="text-gray-600">Profesor Titular Sistemática del Movimiento</p>
-        <img class="w-40 h-40 object-cover mx-auto overflow-hidden m-5" src={user.avatar}/>
+        <img class="w-40 h-40 object-cover shrink-0" src={user.avatar}/>
         <p class="text-gray-600">{user.role}</p>
         <p class="text-gray-400">{user.university}</p>
         <p class="text-gray-400">46010 Valencia, España</p>
-        
-         <!-- Navegación -->
-         <nav class="flex flex-col gap-2">
-        {nav.map((item) => (
-        <a href={item.href} class="text-slate-600 hover:text-white">{item.label}</a>
-        ))}
-    </nav>
+    </div>  
+  </section> 
 
-         
-         <SocialIcons socials={user.links} />
+         <!-- bloque 2  Navegación -->
+    <nav class="flex flex-col gap-2 pb-6 border-b border-white/40">
+         {nav.map((item) => (
+            <a href={item.href} class="text-slate-600 hover:text-white">{item.label}</a>
+            ))}
+    </nav>
+<!-- bloque 3   rrss -->
+         <div class="flex flex-col gap-2 items-start" >
+            <SociaLinksIcons socials={user.links} ids={[ 'rg_link', 'email_link','gs_link', 'cv_link']}
+            showLabels />
+
+         </div>
+          
   
-     </div>  
-    </section>
+     
+   
 
 </aside>

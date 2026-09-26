@@ -1,0 +1,53 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+
+type LinkItem = CollectionEntry<'user'>['data']['links'][number];
+
+export interface Props {
+  socials: LinkItem[]; // array completo de links del usuario
+  ids: string[];       // qué ids mostrar aquí; lo decide quien usa el componente
+  showLabels?: boolean; // true = muestra el nombre debajo del icono (sidebar); false/omitido = solo icono (home)
+}
+
+const { socials, ids, showLabels = false } = Astro.props;
+
+const filtered = socials.filter((social) => ids.includes(social.id));
+
+const localIcons = ['researchgate', 'google-scholar']; // iconos propios en src/icons/, no del paquete MDI
+---
+
+<div class={showLabels ? "flex flex-col gap-3 w-full mt-4" : "flex gap-3 justify-center mt-4"}>
+  {filtered.map((social) => {
+    const isEmail = social.icon === 'email';
+    const href = isEmail
+      ? social.url.startsWith('mailto:') ? social.url : `mailto:${social.url}`
+      : social.url;
+    const iconName = localIcons.includes(social.icon ?? '') ? social.icon : `mdi:${social.icon}`;
+
+    return showLabels ? (
+      <a
+        href={href}
+        target={isEmail ? undefined : '_blank'}
+        rel={isEmail ? undefined : 'noopener noreferrer'}
+        class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-white text-slate-700 font-semibold shadow-sm hover:scale-[1.03] hover:shadow-lg"
+      >
+        <Icon name={iconName} class="w-5 h-5 shrink-0" />
+        <span>{social.name}</span>
+      </a>
+    ) : (
+      <a
+        href={href}
+        target={isEmail ? undefined : '_blank'}
+        rel={isEmail ? undefined : 'noopener noreferrer'}
+        aria-label={social.name}
+        class="w-full flex items-center justify-center
+            gap-2 py-2 px-3
+            rounded-full bg-white
+            text-slate-700 font-semibold shadow-sm hover:scale-[1.03] hover:shadow-lg"
+      >
+        <Icon name={iconName} class="w-4 h-4 shrink-0" />
+      </a>
+    );
+  })}
+</div>

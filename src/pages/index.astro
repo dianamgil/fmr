@@ -2,7 +2,8 @@
 
 import { getUser } from '../lib/getUser';
 import ProfileHeader from '../components/ProfileHeader.astro';
-import SocialIcons from '../components/SocialIcons.astro';
+//import SocialIcons from '../components/SocialIcons.astro';
+import  SociaLinksIcons  from '../components/SociaLinksIcons.astro';
 import LinkButton from '../components/LinkButton.astro';
 import Dropdown from '../components/Dropdown.astro';
 import '../styles/global.css';
@@ -10,8 +11,9 @@ import '../styles/global.css';
 const user = await getUser(); // esto permite que si user no existe, la página falle en lugar de renderizarse con datos indefinidos
 
 
----
 
+---
+<!-- SocialIcons socials={user.links} -->
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -22,7 +24,8 @@ const user = await getUser(); // esto permite que si user no existe, la página 
     <main class="w-full max-w-md flex flex-col items-center mt-8">
 
       <ProfileHeader user={user} />
-      <SocialIcons socials={user.links} />
+      <SociaLinksIcons socials={user.links} ids={['in_link', 'facebook_link', 'email_link']} />
+
       <section class="w-full flex flex-col gap-3 mt-4">
         <LinkButton  socials={user.links}  />
               <Dropdown label="About Me" 
@@ -36,4 +39,4 @@ const user = await getUser(); // esto permite que si user no existe, la página 
 
     </main>
   </body>
-</html>
+</html> 
