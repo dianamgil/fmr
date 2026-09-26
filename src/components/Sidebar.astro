@@ -1,0 +1,60 @@
+---
+
+import type {CollectionEntry} from 'astro:content'; //para tipar el array de links que se usaran
+import {Icon} from 'astro-icon/components'; //tener opciones de iconos de MDI y locales
+import SocialIcons from './SocialIcons.astro'; //importar componente de iconos sociales
+
+export interface Propos{
+    user: CollectionEntry<'user'>['data']; //tipado de la data del usuario
+}
+
+const {user} = Astro.props; 
+
+//links de navegación del side bar
+const nav = [
+  { label: 'Home', href: '/index.astro' },
+  { label: 'Bio', href: '/about/bio' },
+  { label: 'Teaching', href: '/about/teaching' },
+  { label: 'Research', href: '/about/research' },
+];
+---
+
+<!-- botón hamburguesa: solo en móvil, abre el sidebar como popover nativo -->
+<button
+  popovertarget="sidebar-menu"
+  class="lg:hidden fixed top-4 left-4 z-30 flex items-center justify-center w-10 h-10 rounded-full bg-slate-800 text-white shadow-md"
+  aria-label="Abrir menú"
+>
+  <Icon name="mdi:menu" class="w-6 h-6" />
+</button>
+
+//barra lateral
+<aside
+    id="sidebar-menu"
+    popover
+    class="m-0 lg:m-0 w-64 lg:w-64 lg:static lg:block lg:inset-auto! lg:opacity-100 bg-slate-800 text-white p-6 flex flex-col gap-6 overflow-y-auto h-full lg:h-auto"
+    ><!-- responsive: en móvil se abre/cierra como popover nativo (clic fuera lo cierra solo); desde lg queda siempre visible, estático, ignorando el popover -->
+
+    //datos y de perfil del user
+    <div>
+        <h1 class="text-xl font-bold">{user.name}</h1>
+        <p class="text-sm text-slate-300">{user.role}</p>
+    </div> 
+    //links de user
+    <nav class="flex flex-col gap-2">
+        {nav.map((item) => (
+        <a href={item.href} class="text-slate-200 hover:text-white">{item.label}</a>
+        ))}
+    </nav>
+    <img
+        src={user.avatar}
+        alt={user.name}
+        width="128"
+        height="128"
+        class="w-24 h-24 rounded-full object-cover border-4 border-white"
+    />
+    <a href={user.cv} class="text-sm underline text-slate-300 hover:text-white">Curriculum vitae</a>
+        <p class="text-sm text-slate-400 mt-2">{user.university}</p>
+    <SocialIcons socials={user.links} />
+    
+</aside>

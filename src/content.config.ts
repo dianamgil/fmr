@@ -36,7 +36,7 @@ const userCollection = defineCollection({
     return true; // pasa la validación
     },),
     subject: z.string().trim(),
-    role: z.string().trim(),
+    role: z.string().trim().optional(),
     universidad: z.string().trim()
 
        

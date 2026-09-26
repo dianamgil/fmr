@@ -4,6 +4,7 @@ import { getUser } from '../lib/getUser';
 import ProfileHeader from '../components/ProfileHeader.astro';
 import SocialIcons from '../components/SocialIcons.astro';
 import LinkButton from '../components/LinkButton.astro';
+import Dropdown from '../components/Dropdown.astro';
 import '../styles/global.css';
 
 const user = await getUser(); // esto permite que si user no existe, la página falle en lugar de renderizarse con datos indefinidos
@@ -22,7 +23,16 @@ const user = await getUser(); // esto permite que si user no existe, la página 
 
       <ProfileHeader user={user} />
       <SocialIcons socials={user.links} />
-      <LinkButton  socials={user.links}  />
+      <section class="w-full flex flex-col gap-3 mt-4">
+        <LinkButton  socials={user.links}  />
+              <Dropdown label="About Me" 
+              links={[
+                { href: '/about/bio', text: 'Bio' },
+                { href: '/about/teaching', text: 'Teaching' },
+                { href: '/about/research', text: 'Research' },]}
+               />
+      </section>
+      
 
     </main>
   </body>

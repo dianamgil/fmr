@@ -1,0 +1,71 @@
+---
+
+import { Icon } from 'astro-icon/components';
+export interface Props{
+
+    label:string;
+    links:{
+        href:string;
+        text:string }[];
+    }
+
+    //Estos links  estan definidos en index.astro, y se pasan como prop a este componente.
+    const {links} = Astro.props;
+
+---
+
+<!--Boton about Me -->
+<details id = "menu" class="group relative w-full md:w-auto">
+  <summary class="list-none [&::-webkit-details-marker]:hidden
+            flex items-center justify-center 
+            cursor-pointer 
+            w-full py-3 px-4 
+            rounded-full bg-white
+            text-slate-800 font-medium
+            shadow-md hover:shadow-lg">
+    <span>About Me</span>
+     <Icon name="mdi:arrow-down-drop" 
+            class="w-8 h-7 transition-transform group-open:rotate-180"
+     />
+  </summary>
+
+  <div class="mt-2 w-full flex flex-col gap-2
+        md:absolute md:top-0 md:left-full 
+        md:mt-0 md:ml-2 md:w-48"> <!-- responsive: en móvil se despliega debajo (flujo normal, sin riesgo de desbordar); desde md se despliega al lado -->
+    {links.map((link) => (
+      <a href={link.href} 
+      class="block text-center py-2 px-4 
+            rounded-full bg-slate-100
+            text-slate-700 hover:bg-slate-200
+            shadow-sm"
+        >
+        {link.text}
+      </a>
+    ))}
+  </div>
+</details>
+
+<script>
+  const closeMenu = () => {
+    const menu = document.querySelector("#menu");
+
+    if (menu instanceof HTMLDetailsElement) {
+      menu.removeAttribute("open");
+    }
+  };
+
+  // Cerrar después de una navegación
+  document.addEventListener("astro:page-load", closeMenu);
+
+  // Cerrar al hacer clic fuera
+  document.addEventListener("click", (event) => {
+    const menu = document.querySelector("#menu");
+
+    if (
+      menu instanceof HTMLDetailsElement &&
+      !menu.contains(event.target as Node)
+    ) {
+      menu.removeAttribute("open");
+    }
+  });
+</script>
