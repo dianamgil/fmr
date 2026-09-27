@@ -28,7 +28,10 @@
    - **Server/infrastructure scalability** — depends on the hosting platform chosen at deploy time (Vercel, etc.), out of this project's direct control; assumption is that getting code scalability and data scalability right removes the main blockers, and infra scaling becomes mostly a deployment/ops concern rather than an architecture one.
 
    User explicitly directs that all decisions assume a **future migration to a full backend ("Option B": NestJS + database + JWT auth)**, even while current implementation stays static. When a more scalable option has no Lighthouse cost, prefer it (e.g. `astro-icon` over hand-written inline SVGs for icons — same zero-JS build-time output, but scales to any icon any of those hundreds of future users might need, without editing code per-user).
+
 3. Security against attacks — no user-facing forms/uploads exist yet; when built (future publications upload form), must include file-type/size validation and auth.
+   - **XSS rule (2026-09-27):** all data-driven text is rendered with `{variable}`, which Astro escapes automatically. `set:html` (or `innerHTML` in scripts) is forbidden unless the HTML is fully controlled or sanitized (e.g. DOMPurify) and justified with an inline comment. Reason: once content comes from the NestJS DB/API, an unescaped field would let injected scripts run in every visitor's browser. The future backend must also validate/sanitize on input (defense in depth).
+.
 4. Strict data validation at the input layer (this is why Zod/Content Collections replaced hand-written TypeScript interfaces).
 
 5. **Responsive design** — mandatory on every component/page, mobile-first. Use Tailwind breakpoints `sm:`, `md:`, `lg:` (and up) for sizing/spacing/typography rather than fixed values. Mark responsive rules with a short inline comment in the component (e.g. `<!-- responsive: ... -->`) so intent stays visible. Workflow order: (1) build/validate the base (unprefixed = mobile) styles first, (2) only then layer `sm:`, `md:`, `lg:` (and up) where the layout actually needs to change at that breakpoint — no breakpoint is added speculatively.
@@ -75,6 +78,8 @@ Deferred scaling options (documented, not started):
 - `icon` — optional icon identifier resolved by `astro-icon` (`mdi:` set) or a local SVG in `src/icons/` (see below).
 
 The decision was to keep `profile.json`/Zod schema minimal (no per-link display metadata) and instead let each consuming component decide, Internally, which `id`s it renders (see "Component-level id filtering" below). This keeps the data shape simple while still being CMS-ready: a future CMS only needs to feed a component a list of ids (e.g. from checkboxes), it doesn't need to write back into every link's own record.
+
+- `longBio: z.array(z.string().trim().min(1)).min(1)` — bio larga, un string por párrafo. El `.min(1)` interno rechaza párrafos vacíos y el externo exige al menos un párrafo. Separado de `bio` (máx. 150, bio corta del `ProfileHeader`). Se eligió array en JSON en vez de Markdown por escalabilidad: mapea directo a una columna `text[]`/JSON en el futuro backend. Contenido actual: lorem ipsum provisional.
 
 ### Component-level id filtering (resolved — props-based, no longer hardcoded)
 

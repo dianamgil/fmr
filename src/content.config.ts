@@ -16,12 +16,15 @@ const userCollection = defineCollection({
     university: z.string(),
     avatar: z.string(),
     bio: z.string() .max(150), // límite funcional: bio del ProfileHeader no puede superar 50 caracteres
+    longBio: z.array(z.string().trim().min(1)).min(1), // bio larga: un string por párrafo, sin párrafos vacíos
     email: z.string().email(),
     cv: z.string(),
     theme: z.object({
       primaryColor: z.string(),
       backgroundColor: z.string()
     }),
+    skills:z.array(
+      z.string().trim().min(1)).default([]), //lista simple de habilidades (ej. MATLAB, R); default sin skills, la sección no se pinta
 
     teaching: z.array(
       z.object({

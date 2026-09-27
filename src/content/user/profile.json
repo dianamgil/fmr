@@ -4,6 +4,13 @@
   "university": "Universidad de Valencia",
   "avatar": "/images/avatar_fmr.webp",
   "bio": "Profesor Titular de Sistematica del Movimiento y Poblaciones especiales. Investigador en entrenamiento de fuerza y salud.",
+  "longBio": [
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "Effects of Accentuated Eccentric and Maximal Strength High-Resistance Training Programs with or Without a Curcumin-Based Formulation Supplement on Body Composition, Blood Pressure, andMetabolic Parameters in Older Adults",
+    "Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip"
+  ],
+  "skills":["Matlab","Data Science","R","Markdown","Peer Review","Python", "NoteBookLM","Numpy, Pandas, Scikit-Learn"],
   "email": "fernando.martin-rivera@uv.es",
   "cv": "/documents/cv_fmartinr.pdf",
   "theme": {
