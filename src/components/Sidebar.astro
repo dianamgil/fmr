@@ -25,7 +25,7 @@ const nav = [
   type="button"
   class="md:hidden fixed top-4 right-4 z-50 flex items-center justify-center
          w-10 h-10 rounded-full bg-slate-800 text-white shadow-md"
-  h-dvh overscroll-contain
+  h-dvh overscroll-contain 
   aria-controls="mySidenav"
   aria-expanded="false"
   aria-label="Abrir menú"
@@ -104,9 +104,9 @@ const nav = [
       if (e.key === 'Escape') setOpen(false);
     });
  
-    // Clic en cualquier enlace del sidebar: cierra antes de navegar
-    sidebar.querySelectorAll('a').forEach((a) =>
-      a.addEventListener('click', () => setOpen(false)));
+    // Clic en cualquier enlace del sidebar: cierra SIDEBAR antes de navegar..OJO VER SI SE ACTIVA MAS ADELANTE
+    //sidebar.querySelectorAll('a').forEach((a) =>
+      //a.addEventListener('click', () => setOpen(false)));
   }
 </script>
           

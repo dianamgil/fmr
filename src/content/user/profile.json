@@ -25,7 +25,6 @@
     {"subject": "Sistemática del movimiento","universidad": "Universitat de València","role": "Coordinador","period": "2019-"},
     {"subject": "Ejercicio Físico para Poblaciones con Necesidades Especiales","universidad": "Universitat de València","role": "", "period": "2023-2025"},
     {"subject": "Supervisor IRA FCAFE (Consejo de Seguridad Nuclear)","universidad": "Universitat de València", "role": "","period": "2023-"},
-    {"subject": "Ejercicio Físico para Poblaciones con Necesidades Especiales","universidad": "Universitat de València","role": "", "period": "2023-2025"},
     {"subject": "Métodos y protocolos de readaptación en el deporte - MASTER", "universidad": "Universidad Católica de València", "role": "","period": "2020-2025"},
     {"subject": "Entrenamiento Deportivo: Preparación Física","universidad": "Universitat de València", "role": "","period": "2019-2023"},
     {"subject": "Diseño y planificación del entrenamiento personal MASTER", "universidad": "Universidad de Cádiz", "role": "","period": "2019-2025"},
@@ -33,7 +32,8 @@
     {"subject": "Prácticas externas", "universidad": "Universitat de València","role": "Tutor", "period": "2014-"},
     {"subject": "Planificación y evaluación de la actividad física y el deporte","universidad": "Universitat de València","role": "Coordinador","period": "2011-2020"},
     {"subject": "High Intensity Interval Training y Trabajo hipopresivo en el deportista -MASTER","universidad": "Universidad Cardenal Herrera CEU Sevilla", "role": "","period": "2015-2018"},
-    {"subject": "Readaptación del deportista lesionado- MASTER","universidad": "Universidad Católica de València","role": "","period": "2015-2018"}
+    {"subject": "Readaptación del deportista lesionado- MASTER","universidad": "Universidad Católica de València","role": "","period": "2015-2018"},
+    {"subject": "Nuevas tendencias en el entrenamiento físico personalizado -Curso","universidad": "Universitat de València","role": "","period": "2012-2013"}
   
   ],
 

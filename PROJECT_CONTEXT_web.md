@@ -177,10 +177,21 @@ Longer-term, not started: Decap CMS integration; NestJS+DB+auth backend migratio
 
 ## 12. Sidebar & Layout (BaseLayout.astro, Sidebar.astro)
 
-- `src/layouts/BaseLayout.astro` creado (placeholder, aún vacío/pendiente de completar con el `<slot />` y estructura compartida entre páginas).
-- `src/components/Sidebar.astro` — sidebar fijo (`fixed inset-y-0 left-0`), reorganizado en 3 bloques visualmente separados (`border-b` entre ellos):
-  1. **Perfil**: nombre, foto, role, departamento, universidad, dirección.
-  2. **Navegación**: links internos (`Home`, `Bio`, `Teaching`, `Research`).
-  3. **Redes/CV**: `SociaLinksIcons` con `showLabels`, mostrando CV, ResearchGate, Google Scholar y LinkedIn (ids distintos a los que se muestran en el home).
-- **Responsive**: implementado con el Popover API nativo del navegador (`popovertarget` en un botón hamburguesa + atributo `popover` en el `<aside>`), sin JS. En pantallas `lg:` y superiores, clases `lg:static lg:inset-auto! lg:block lg:opacity-100` anulan el estado "oculto" del popover, dejando el sidebar siempre visible y fijo; el botón hamburguesa lleva `lg:hidden` para no mostrarse cuando ya hay espacio fijo para el sidebar.
-- **En progreso**: migrando el toggle de mostrar/ocultar de la API `popover` nativa a un toggle manual con `<script>` + clases Tailwind (`opacity-0`/`opacity-100` con `transition-opacity`), para poder animar la apertura/cierre con más control. Los breakpoints `lg:` se mantienen vía CSS, el JS solo gestiona el estado abierto/cerrado en pantallas chicas.
+src/layouts/BaseLayout.astro — estructura compartida de las páginas /aboutme/*: <slot name="sidebar" /> + <main> con el <slot /> por defecto.
+ El <main> lleva md:ml-70 (= ancho del sidebar w-70) para que el sidebar fijo no tape el contenido desde md, y pt-16 en móvil para dejar hueco al botón hamburguesa.
+
+src/components/Sidebar.astro — sidebar fijo (fixed inset-y-0 left-0 w-70) en 3 bloques separados por border-b:
+* Perfil: nombre, foto, role, departamento, universidad, dirección.
+* Navegación: links internos con rutas absolutas (/, /aboutme/bio, /aboutme/teaching, /aboutme/research). 
+* Redes/CV: SociaLinksIcons con showLabels (ids rg_link, email_link, gs_link, cv_link).
+
+Responsive (decisión: botón nativo + script, sustituye al Popover API)
+Breakpoint: md (768px). Por debajo, sidebar oculto + botón hamburguesa; desde md, sidebar siempre visible y botón oculto. (Alternativa documentada: breakpoint propio de 750px vía @theme { --breakpoint-nav: 46.875rem; } en global.css.)
+
+Ocultar/mostrar: el <aside> lleva -translate-x-full transition-transform duration-300 + md:translate-x-0. El JS solo alterna -translate-x-full; la clase md: se emite después en el CSS y gana en pantallas grandes, así que el script no necesita conocer el breakpoint.
+
+Botón: <button id="sidebar-toggle" type="button"> con aria-controls="mySidenav" y aria-expanded (fuente del estado abierto/cerrado), md:hidden, fixed top-4 right-4.
+Overlay: <div id="sidebar-overlay"> fixed inset-0 bg-black/40, hidden md:hidden; el JS alterna hidden.
+Capas z-index: overlay z-30 < sidebar z-40 < botón z-50. Sin z-40 en el sidebar el overlay lo tapaba y bloqueaba los clics (bug encontrado y corregido).
+
+Script (<script> de Astro, módulo): usa addEventListener, nunca onclick="..." inline — las funciones de un módulo no son globales (ReferenceError). Una única función setOpen(open) actualiza clases y atributos ARIA. Cierra con: clic en el botón, clic en el overlay, tecla Escape, clic en un enlace del sidebar.
