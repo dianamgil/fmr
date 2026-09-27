@@ -76,15 +76,18 @@ Deferred scaling options (documented, not started):
 
 The decision was to keep `profile.json`/Zod schema minimal (no per-link display metadata) and instead let each consuming component decide, Internally, which `id`s it renders (see "Component-level id filtering" below). This keeps the data shape simple while still being CMS-ready: a future CMS only needs to feed a component a list of ids (e.g. from checkboxes), it doesn't need to write back into every link's own record.
 
-### Component-level id filtering (temporary, CMS-ready pattern)
+### Component-level id filtering (resolved — props-based, no longer hardcoded)
 
-`SocialIcons.astro` and the buttons-list component each receive the **entire** `links` array as a prop (never pre-filtered by the calling page) and filter it themselves against a hardcoded id list, e.g.:
+`SociaLinksIcons.astro` (replaces `SocialIcons.astro`, deleted) receives the **entire** `links` array plus an explicit `ids: string[]` prop from whichever page/component calls it — the id list is no longer a hardcoded constant inside the component:
 ```ts
-const iconIds = ['linkedin', 'facebook', 'email']; // TEMPORARY — will become a prop fed by the CMS/backend later
-const filtered = socials.filter((link) => iconIds.includes(link.id));
-```
-Intent: `index.astro` never needs code changes to add/remove/reassign a link's display — today the id list is a literal constant inside the component (single-professor stage), but the component's own logic will not change when migrating to a CMS — only where that id list comes from will (constant → `Astro.props.ids`, populated from stored professor config/checkboxes). `index.astro` always passes the raw `user.links` array unfiltered: `<SocialIcons socials={user.links} />`.
-
+export interface Props {
+  socials: LinkItem[];
+  ids: string[];       // required — decided by the caller, every time
+  showLabels?: boolean; // false (default) = icon-only; true = pill with icon + name
+}
+const filtered = ids
+  .map((id) => socials.find((social) => social.id === id))
+  .filter((social): social is LinkItem => Boolean(social)); // order follows `ids`, not the source array
 - 
 ### Architectural decision
 
@@ -113,7 +116,11 @@ ProfileHeader.astro — renders avatar, name, role, university, bio.
 - The component is currently used by `src/pages/index.astro`.
 Props type sourced from the auto-generated CollectionEntry type (not a hand-written interface) — consistent with the decision to remove manual TS interfaces in favor of Zod-derived types.
 
-SocialIcons.astro — Props { socials: Social[] }. Renders circular link icons using `astro-icon` (set `mdi` for linkedin/facebook/email) plus local SVGs in `src/icons/` (`researchgate.svg`, `google-scholar.svg`) for brands not covered by an installed icon set. A `localIcons` list decides whether `social.icon` is used as-is or prefixed with `mdi:`. Falls back to the network's first letter only if `icon` doesn't resolve to any known icon.
+SociaLinksIcons.astro — reemplaza a SocialIcons.astro (borrado). Props { socials: LinkItem[]; ids: string[]; showLabels?: boolean }.
+- `ids` ya no es un array hardcodeado dentro del componente: es obligatorio y lo decide cada vista que lo llama (`index.astro` pasa un subconjunto para el home solo-ícono; `Sidebar.astro` pasa otro subconjunto con nombre visible). Esto reemplaza el patrón "TEMPORARY hardcoded id list" descrito antes en la sección 4 — ya quedó resuelto de forma permanente vía props, no vía CMS futuro.
+- El orden de aparición sigue el orden del array `ids` (se resuelve con `ids.map(id => socials.find(...))`, no con `.filter()`, para que reordenar `ids` reordene la UI sin tocar `profile.json`).
+- `showLabels` (default `false`): `false` renderiza solo el círculo del ícono (usado en `index.astro`, home); `true` renderiza una píldora `w-full` con ícono + nombre lado a lado (usado en `Sidebar.astro`, bloque de redes).
+- Sigue usando `localIcons = ['researchgate', 'google-scholar']` para resolver íconos SVG locales (`src/icons/`) en vez de `mdi:` cuando corresponde — mismo patrón que `LinkButton.astro`.
 
 LinkButton.astro — Props { title: string; url: string }. Renders a full-width pill button; detects external links via url.startsWith('http') to set target="_blank" rel="noopener noreferrer".
 
@@ -130,6 +137,7 @@ InvalidContentEntryDataError — caused by schema/data field-name mismatch (link
 ProfileHeader.astro was missing its opening --- frontmatter fence and had a stray invalid \\ line — fixed.
 PowerShell blocked npm due to default execution policy — resolved via Set-ExecutionPolicy -Scope CurrentUser RemoteSigned.
 git push rejected (non-fast-forward, unrelated histories) — resolved via force push (single-owner repo, accepted risk).
+
 9. Outstanding / Immediate Next Steps
 Confirm index.astro currently renders the real landing page (not the Astro default) — run npm run dev and visually verify.
 Fill placeholder values in profile.json (ORCID, GitHub URLs still "...").
@@ -142,6 +150,9 @@ Decide and configure repo visibility (private recommended given real personal da
 Configure Vercel deployment (not yet connected/configured).
 Plan cache-busting strategy for cv.pdf updates (versioned URL or Cache-Control header) — deferred to deployment-configuration phase.
 Longer-term, not started: Decap CMS integration; NestJS+DB+auth backend migration; publications upload form (depends on backend).
+- Terminar el toggle JS del sidebar (paso actual: reemplazar popover nativo por clases + script con transición de opacidad).
+- Completar `BaseLayout.astro` (actualmente vacío) y conectarlo a las páginas existentes.
+- `Bio.astro` tiene un `import Sidebar` sin usar y le falta el cierre `---` del frontmatter — revisar/limpiar.
 
 10. ## Current status
 
@@ -163,3 +174,13 @@ Longer-term, not started: Decap CMS integration; NestJS+DB+auth backend migratio
 - Zod is the source of truth for validation.
 - Data access must remain centralized.
 - Do not introduce a backend at this time.
+
+## 12. Sidebar & Layout (BaseLayout.astro, Sidebar.astro)
+
+- `src/layouts/BaseLayout.astro` creado (placeholder, aún vacío/pendiente de completar con el `<slot />` y estructura compartida entre páginas).
+- `src/components/Sidebar.astro` — sidebar fijo (`fixed inset-y-0 left-0`), reorganizado en 3 bloques visualmente separados (`border-b` entre ellos):
+  1. **Perfil**: nombre, foto, role, departamento, universidad, dirección.
+  2. **Navegación**: links internos (`Home`, `Bio`, `Teaching`, `Research`).
+  3. **Redes/CV**: `SociaLinksIcons` con `showLabels`, mostrando CV, ResearchGate, Google Scholar y LinkedIn (ids distintos a los que se muestran en el home).
+- **Responsive**: implementado con el Popover API nativo del navegador (`popovertarget` en un botón hamburguesa + atributo `popover` en el `<aside>`), sin JS. En pantallas `lg:` y superiores, clases `lg:static lg:inset-auto! lg:block lg:opacity-100` anulan el estado "oculto" del popover, dejando el sidebar siempre visible y fijo; el botón hamburguesa lleva `lg:hidden` para no mostrarse cuando ya hay espacio fijo para el sidebar.
+- **En progreso**: migrando el toggle de mostrar/ocultar de la API `popover` nativa a un toggle manual con `<script>` + clases Tailwind (`opacity-0`/`opacity-100` con `transition-opacity`), para poder animar la apertura/cierre con más control. Los breakpoints `lg:` se mantienen vía CSS, el JS solo gestiona el estado abierto/cerrado en pantallas chicas.
