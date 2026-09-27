@@ -11,21 +11,40 @@ export interface Props{
 const {user} = Astro.props; 
 
 const nav = [
-  { label: 'Home', href: '' },
+  { label: 'Home', href: '/' }, //lleva a pagina inicial
   { label: 'Bio', href: 'bio' },
   { label: 'Teaching', href: 'teaching' },
   { label: 'Research', href: 'research' },
 ];
 ---
 
-<!-- botón hamburguesa: siempre visible, abre/cierra el sidebar en cualquier tamaño -->
+
+<!-- responsive: botón visible solo en < lg; a la derecha para no tapar el nombre -->
+<button
+  id="sidebar-toggle"
+  type="button"
+  class="md:hidden fixed top-4 right-4 z-50 flex items-center justify-center
+         w-10 h-10 rounded-full bg-slate-800 text-white shadow-md"
+  h-dvh overscroll-contain
+  aria-controls="mySidenav"
+  aria-expanded="false"
+  aria-label="Abrir menú"
+>
+  <Icon name="mdi:menu" class="w-6 h-6" />
+</button>
+
+<!-- responsive: fondo oscuro solo en móvil; oculto hasta que el JS abra el menú -->
+<div id="sidebar-overlay" 
+    class="hidden md:hidden fixed inset-0 z-30 bg-black/40">
+</div>
 
 
 <aside id="mySidenav"
-
-     class="fixed inset-y-0 left-0 w-70
+     class="fixed inset-y-0 left-0  z-40 w-70
+     -translate-x-full transition-transform duration-300 ease-out
+      md:translate-x-0 
      bg-linear-to-r from-[#B0E0E6] to-[#E4F5F7] 
-     overflow-y-auto p-6 flex flex-col gap-6"> <!-- estilo global del sidebar -->
+     overflow-y-auto px-8 py-10 lg:p-8 flex flex-col gap-6"> <!-- estilo global del sidebar --> <!-- lg:translate-x-0 responsive: en móvil fuera de pantalla hasta que el JS lo abra; desde lg siempre visible -->
 
  <!-- bloque 1 perfil  -->
    <section class="flex items-start gap-5 pb-6 border-b border-white/40">
@@ -51,6 +70,45 @@ const nav = [
             showLabels />
 
          </div>
+
+
+
+         <!-- script para manejo de menu en pantallas pequeñas -->
+<script>
+  // recoger los 3 elementos 
+  const btn = document.getElementById('sidebar-toggle');
+  const sidebar = document.getElementById('mySidenav');
+  const overlay = document.getElementById('sidebar-overlay');
+ 
+  //comprobacion 
+  if (btn && sidebar && overlay) {
+ 
+    // Única función que cambia el estado: open = true abre, false cierra
+    const setOpen = (open: boolean) => {
+      // toggle(clase, condición): pone la clase si la condición es true, la quita si es false
+      sidebar.classList.toggle('-translate-x-full', !open); // sin esta clase el sidebar entra en pantalla
+      overlay.classList.toggle('hidden', !open);            // muestra u oculta el fondo oscuro
+      btn.setAttribute('aria-expanded', String(open));       // guarda el estado para el lector de pantalla y para el clic
+      btn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    };
+ 
+    // Clic en el botón: si estaba cerrado ('false') lo abre, si estaba abierto lo cierra
+    btn.addEventListener('click', () =>
+      setOpen(btn.getAttribute('aria-expanded') !== 'true'));
+ 
+    // Clic en el fondo oscuro: cierra
+    overlay.addEventListener('click', () => setOpen(false));
+ 
+    // Tecla Escape: cierra
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+ 
+    // Clic en cualquier enlace del sidebar: cierra antes de navegar
+    sidebar.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', () => setOpen(false)));
+  }
+</script>
           
   
      

@@ -1,10 +1,10 @@
 # Project Context Summary — Academic Personal Website (bio.link-style)
 
-ESTE PROYECTO SE HARÁ PASO A PASO, SIGUIENDO MIS INSTRUCCIONES. LO QUE SE AHCE EN ÉL LO ESCRIBO YO BASANDOSE EN LO SIGUIENTE:
+
 
 
 ## 1. Purpose & Business Context
-- Client: a university professor requesting a personal academic website.
+- Client: a university professor or other profesionals requesting a personal  website.
 - Developer intent: build this as a **reusable template** to resell/replicate to other professors (junior dev, first freelance portfolio piece).
 - Design reference: bio.link-style landing page (avatar, name, social icons, stacked link buttons) as the entry point, expanding into a multi-page academic site (CV, Publications, Projects, About) with a shared sticky nav/layout.
 
