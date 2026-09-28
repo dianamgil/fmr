@@ -26,8 +26,8 @@ const { user } = Astro.props; //recoger os datos (props) que han llegado de .jso
           : `${startYear}-present`; //calcula qué texto de periodo mostrar
       return (
         // [tw] responsive: columna en móvil, fila desde sm 
-        <li class="flex flex-col sm:flex-row sm:gap-6"> 
-          <span class="text-sm text-slate-400 sm:w-32 sm:shrink-0">{displayPeriod}</span> 
+        <li class="flex flex-col sm:flex-row sm:gap-3"> 
+          <span class="text-sm text-slate-400 sm:w-24 sm:shrink-0">{displayPeriod}</span> 
           <div>
             <p class="font-semibold text-slate-800">{job.subject}</p> 
              <p class="text-sm text-slate-400"> 

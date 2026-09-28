@@ -5,10 +5,11 @@
   "avatar": "/images/avatar_fmr.webp",
   "bio": "Profesor Titular de Sistematica del Movimiento y Poblaciones especiales. Investigador en entrenamiento de fuerza y salud.",
   "longBio": [
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    "Effects of Accentuated Eccentric and Maximal Strength High-Resistance Training Programs with or Without a Curcumin-Based Formulation Supplement on Body Composition, Blood Pressure, andMetabolic Parameters in Older Adults",
-    "Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip"
+    "Tengo un perfil interdisciplinar que combina la Docencia universitaria desde el año 2011 con la gestión deportiva, el entrenamiento de fuerza, la salud, la biomecánica y la tecnología aplicada.  ",
+    "Actualmente desarrollo mi actividad en la **Universitat de València, en la Facultat de Ciencias de la Actividad Física y el Deporte**, donde soy profesor titular desde 2025. Mi experiencia docente se extiende, además, a la formación permanente del profesorado.",
+    "Mi experiencia profesional en el sector deportivo se remonta a la década de 1990, siendo responsable en la dirección técnica de actividades de aeróbic vinculada a la Real Federación Española de Gimnasia, así como funciones de gestión y dirección técnica en instalaciones deportivas. ",
+    "La investigación constituye uno de los elementos más destacados de mi perfil profesional. Mi línea de trabajo investigador se caracteriza por un enfoque aplicado y experimental. Una parte importante de mi investigación se centra en analizar la **validez, la fiabilidad y la utilidad de instrumentos tecnológicos** destinados a medir el movimiento, la velocidad, la fuerza y la activación muscular durante la práctica del ejercicio físico.",
+    "La evolución de mi formación hacia la estadística, Python, la inteligencia artificial, el machine learning y la ingeniería de datos refuerza mi capacidad para participar en proyectos de investigación multidisciplinares. Dirigiendo mi trayectoria hacia iniciativas que conecten las ciencias del deporte con la ciencia de datos, la sensorización, la inteligencia artificial, la salud digital y el envejecimiento activo."
   ],
   "skills":["Matlab","Data Science","R","Markdown","Peer Review","Python", "NoteBookLM","Numpy, Pandas, Scikit-Learn"],
   "email": "fernando.martin-rivera@uv.es",

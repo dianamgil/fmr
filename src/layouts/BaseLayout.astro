@@ -17,7 +17,7 @@ const { title } = Astro.props; //end point de cual componente se renderiza (bio,
   </head>
   <body class="min-h-screen bg-white text-slate-800"> 
       <slot name="sidebar" /> <!-- [At] -->
-      <main class="w-full md:ml-70 p-6 md:p-10"> <!-- [tw] -->
+      <main class=" md:ml-70 p-6 md:p-10 md:pl-16 lg:pl-20"> <!-- [tw] -->
         <slot /> <!-- [At] slot por defecto: aquí entra Bio/Teaching/Research -->
       </main>
    </body>
