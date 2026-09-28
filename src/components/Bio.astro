@@ -11,17 +11,16 @@ const { user } = Astro.props;
 ---
 
 
-<!-- responsive: título más grande desde md; ancho de lectura limitado con max-w-3xl  <!-- seguridad (XSS): {paragraph} se escapa automáticamente (< y > se muestran como texto, no se ejecutan).-->-->
+<!-- responsive: título más grande desde md; ancho de lectura limitado con max-w-3xl  -->
 <section class="w-full max-w-3xl">
   <h1 class="text-2xl md:text-3xl font-bold mb-4 text-justify">Sobre mi</h1>
 
   <div class="flex flex-col gap-4 text-slate-700 leading-relaxed">
+    <!-- seguridad (XSS): {paragraph} se escapa automáticamente y se muestran como texto, no se ejecuta-->
    {user.longBio.map((paragraph) => (
   <p>
-    {boldSegments(paragraph).map((s) =>
-      s.bold ? <strong class="font-semibold text-slate-800">{s.text}</strong> : s.text // <strong>: énfasis semántico, no solo visual
-    )}
-  </p>
+    {boldSegments(paragraph).map((s) => s.bold ? <strong class="font-semibold text-slate-800">{s.text}</strong> : s.text )}
+  </p>// si tiene etiqueta ** ** en json pinta bold : sino texto normal
 ))}
   </div>
 

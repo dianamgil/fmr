@@ -1,9 +1,13 @@
 ---
 import '../styles/global.css'; // [At] sin esto, Tailwind no se carga en esta parte del sitio
+import Footer from '../components/Footer.astro';
+import { getUser } from '../lib/getUser';
+
+// ...Props igual que ahora
+const user = await getUser(); // Astro la cachea: no se carga dos veces aunque la página ya la llame
 
 export interface Props {
   title: string;
-
 }
 
 const { title } = Astro.props; //end point de cual componente se renderiza (bio, teaching ...)
@@ -17,8 +21,9 @@ const { title } = Astro.props; //end point de cual componente se renderiza (bio,
   </head>
   <body class="min-h-screen bg-white text-slate-800"> 
       <slot name="sidebar" /> <!-- [At] -->
-      <main class=" md:ml-70 p-6 md:p-10 md:pl-16 lg:pl-20"> <!-- [tw] -->
+      <main class=" md:ml-70 p-6 md:p-10 md:pl-16 lg:pl-20"> <!--  -->
         <slot /> <!-- [At] slot por defecto: aquí entra Bio/Teaching/Research -->
       </main>
+      <Footer/>
    </body>
 </html>

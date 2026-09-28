@@ -64,6 +64,13 @@ Deferred scaling options (documented, not started):
   - Pages should call `getUser()` rather than duplicating the data-access logic.
   - This abstraction is intentional and should make a future migration from Astro Content Collections to a real API easier.
 
+  `src/lib/boldSegments.ts`
+  - Helper de presentación: convierte un texto con marcas `**negrita**` en segmentos `{ text, bold }` (split con grupo de captura; lo marcado queda en posiciones impares).
+  - Lo usa `Bio.astro` para pintar `<strong>` dentro de los párrafos de `longBio`, sin `set:html` (cumple la regla XSS de NFR 3): la función devuelve texto plano y el componente decide el HTML.
+  - Formato elegido por compatibilidad con CMS: Decap y la mayoría de headless guardan el texto enriquecido como Markdown (`**`), así que no habrá migración de datos.
+  - Limitación conocida: solo entiende negrita. En la fase CMS (cursiva, enlaces, listas) se sustituye por un renderizador Markdown completo + sanitizador en este mismo punto, sin tocar JSON ni componentes.
+  - Reutilizable en otros componentes (Teaching, Research) si necesitan negrita.
+
 
   - **`socials` and `links` were merged into a single unified `links` array** (see "Links data model" below) — the old two-array split (icons vs buttons) was dropped in favor of one array plus per-component id-based selection.
   ### Links data model (unified `links` array)

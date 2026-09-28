@@ -4,7 +4,8 @@ import { glob } from 'astro/loaders'; // importa el loader glob para buscar arch
 // Define schema de usuario con su loader y esquema de validación
 
 
-//nombrar colletion
+//----------------------------COLECCIÓN DE USUARIO ------------
+
 const userCollection = defineCollection({
 
 
@@ -19,10 +20,7 @@ const userCollection = defineCollection({
     longBio: z.array(z.string().trim().min(1)).min(1), // bio larga: un string por párrafo, sin párrafos vacíos
     email: z.string().email(),
     cv: z.string(),
-    theme: z.object({
-      primaryColor: z.string(),
-      backgroundColor: z.string()
-    }),
+   
     skills:z.array(
       z.string().trim().min(1)).default([]), //lista simple de habilidades (ej. MATLAB, R); default sin skills, la sección no se pinta
 
@@ -66,9 +64,27 @@ const userCollection = defineCollection({
   }),
 });
 
-// Exporta las colecciones para que Astro las reconozca y pueda usarlas
+
+//----------------------------COLECCIÓN DE TEXTOS LEGALES privacidad, aviso legal... un .md por documento------------
+
+const legalCollection = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/legal' }), // ubicacion de fichero privacy.md
+  schema: z.object({
+    title: z.string().trim().min(1),   // título visible de la página
+    updatedAt: z.coerce.date(),        // "2026-09-28" en el frontmatter → objeto Date validado
+  }),
+});
+
+
+
+// Exporta las colecciones para que Astro las reconozca y pueda usarlas 
 export const collections = {
-      // Registra la colección "user" para poder acceder a ella con getCollection('user')
-  user: userCollection,
+      
+  user: userCollection, //  "user" para poder acceder a ella con getCollection('user')
+  legal: legalCollection, //  "legal" para poder usar los textos legales 
 };
+
+
+
+
 

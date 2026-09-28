@@ -1,0 +1,24 @@
+---
+
+import type { CollectionEntry } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+
+type Props = Pick<CollectionEntry<'user'>['data'], 'name'>;
+
+const year = new Date().getFullYear(); // calcular fecha en el build
+
+---
+
+<footer class="md:ml-70 px-6 py-8 border-t border-slate-200 text-center text-sm text-slate-600">
+  <p class="flex flex-col gap-1 md:flex-row md:justify-center md:gap-2">
+   
+    <span class="inline-flex items-center justify-center gap-1">
+        <Icon name="mdi:copyright" class="w-4 h-4" aria-label="Copyright" />
+            {year} Fernando Martín Rivera. 
+    </span>
+    <a href="/privacy_policy" class="text-cyan-800 underline underline-offset-2 hover:opacity-80">
+      Política de privacidad
+    </a>
+  </p>
+  <p class="mt-8">Made by DMG</p>
+</footer>

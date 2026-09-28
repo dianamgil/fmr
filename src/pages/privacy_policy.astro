@@ -1,0 +1,40 @@
+---
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { getUser } from '../lib/getUser';
+
+const user = await getUser();
+
+const privacy = await getEntry('legal', 'privacy');
+
+if (!privacy) throw new Error('Falta src/content/legal/privacy.md'); // el build falla en vez de publicar vacío
+
+const { Content } = await render(privacy); // Markdown compilado en build, sin set:html
+
+const updated = privacy.data.updatedAt.toLocaleDateString('es-ES', {
+  day: 'numeric', month: 'long', year: 'numeric',
+});
+
+---
+
+
+<BaseLayout title={`${user.name} · ${privacy.data.title}`}>
+  <Sidebar user={user} slot="sidebar" />
+
+  <!-- responsive: mobile-first, ancho de lectura limitado a max-w-3xl en pantallas grandes -->
+  <article class="max-w-3xl">
+    <h1 class="text-2xl md:text-3xl font-bold mb-2">{privacy.data.title}</h1>
+    <p class="text-sm text-slate-500 mb-8">
+      Última actualización: <time datetime={privacy.data.updatedAt.toISOString()}>{updated}</time>
+    </p>
+
+    <!-- estilos para el HTML que genera el Markdown (no lleva clases propias) -->
+    <div class="leading-relaxed
+                [&_h2]:text-lg md:[&_h2]:text-xl [&_h2]:font-semibold [&_h2]:mt-8 [&_h2]:mb-3
+                [&_p]:mb-4
+                [&_a]:underline [&_a]:underline-offset-2">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
