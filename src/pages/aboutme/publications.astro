@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import { getUser } from '../../lib/getUser';
+import Publications from '../../components/Publications.astro';
+
+const user = await getUser(); //espera los datos del profesor 
+---
+
+
+<!-- <Publications user="{user}"/>contenido de componente BIO.astro, que contiene la info de la sección "longbio del json"-->
+<BaseLayout title={`${user.name}. Publications`}>
+    <Sidebar user{user} slot="sidebar"/>
+    <Publications user={user} />  
+</BaseLayout>

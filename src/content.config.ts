@@ -20,7 +20,7 @@ const userCollection = defineCollection({
     longBio: z.array(z.string().trim().min(1)).min(1), // bio larga: un string por párrafo, sin párrafos vacíos
     email: z.string().email(),
     cv: z.string(),
-   
+  
     skills:z.array(
       z.string().trim().min(1)).default([]), //lista simple de habilidades (ej. MATLAB, R); default sin skills, la sección no se pinta
 
@@ -52,13 +52,17 @@ const userCollection = defineCollection({
       })
     ),
     publications: z.array(
-        //fichero .json debe tener este mismo schema 
       z.object({
-         id: z.string(), // Agregar un campo "id" para cada publicación, Escalable con Nest.js.(repeatable, future CRUD/DB rows)
-        title: z.string(),
-        authors: z.string(),
+        id: z.string(), // Agregar un campo "id" para cada publicación, Escalable con Nest.js.(repeatable, future CRUD/DB rows)
+        year: z.number().int().min(1950).max(new Date().getFullYear()),
+        title: z.string().trim(),
+        authors: z.array(
+          z.object({
+            name: z.string().trim().min(1),
+            isMe: z.boolean().default(false), //RECONOCER A user, añadir negrita  <b>
+            })).min(1),
         journal: z.string(),
-        pdf: z.string(),
+        doi: z.string().trim().regex(/^10\.\d{4,9}\/[-._;()/:a-zA-Z0-9]+$/, 'DOI no válido').optional(), //validar DOI reference
       })
     ).default([]), //Si no hay ninguna publicación, usa una lista vacía [] en vez de dar error.
   }),

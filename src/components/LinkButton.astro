@@ -13,11 +13,11 @@ const { socials } = Astro.props;
 // TEMPORAL: qué ids se muestran como icono aquí, hardcodeado mientras no hay CMS.
 // Cuando llegue el backend/CMS, esta constante se sustituye por una prop (ej. `ids` recibida
 // desde fuera, ya calculada a partir de lo que user eligió) 
-const iconIds = ['rg_link', 'gs_link'];
+const iconIds = ['rg_link', 'gs_link','orcid_link'];
 
 const filtered = socials.filter((social) => iconIds.includes(social.id)); // solo itera los links seleccionados, no el array completo
 
-const localIcons = ['researchgate', 'google-scholar']; // iconos propios en src/icons/, no del paquete MDI
+const localIcons = ['researchgate', 'google-scholar', 'orcid']; // iconos propios en src/icons/, no del paquete MDI
 ---
 
 

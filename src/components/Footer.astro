@@ -1,9 +1,7 @@
 ---
 
-import type { CollectionEntry } from 'astro:content';
-import { Icon } from 'astro-icon/components';
 
-type Props = Pick<CollectionEntry<'user'>['data'], 'name'>;
+import { Icon } from 'astro-icon/components';
 
 const year = new Date().getFullYear(); // calcular fecha en el build
 

@@ -1,23 +1,20 @@
-## Política de privacidad
+---
+title: Política de privacidad
+updatedAt: 2026-09-28
+---
+
+
 
 Los datos personales (en adelante, “datos”) solo serán tratados por nosotros en la medida necesaria y con la finalidad de ofrecer un sitio web funcional, seguro y fácil de usar, incluyendo sus contenidos y los servicios allí ofrecidos.
 
 De conformidad con el Reglamento (UE) 2016/679 (RGPD) y la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD), esta política le informa sobre el tipo, alcance, finalidad, duración y base jurídica del tratamiento de sus datos, así como sobre sus derechos.
 
----
+
 
 ### I. Responsable del tratamiento
 
-El responsable del tratamiento de los datos recogidos a través de este sitio web es:
+El responsable del tratamiento de los datos recogidos a través de este sitio web es **Fernando Martín Rivera**  **[NIF/CIF]** domicilio **46007 Valencia** Correo electrónico de contacto:  fernando.martin-rivera@uv.es. Este sitio web es de carácter informativo y personal. No se recaban datos personales a través de formularios propios.
 
-- Nombre: **Fernando Martín Rivera**  
-- NIF/CIF: **[NIF/CIF]**  
-- Domicilio: **46007, Valencia**  
-- Correo electrónico de contacto: **fernando.martin-rivera@uv.es**  
-
-Este sitio web es de carácter informativo y personal. No se recaban datos personales a través de formularios propios.
-
----
 
 ### II. Derechos de los usuarios y afectados
 
@@ -49,7 +46,7 @@ Por razones técnicas y de seguridad, nuestro proveedor de alojamiento registra 
 
 Estos datos se almacenan de forma temporal en los registros del servidor, sin cruzarlos con otros datos suyos. La base jurídica es el **interés legítimo** (art. 6.1.f RGPD) para garantizar la seguridad, estabilidad y correcto funcionamiento del sitio web.
 
-Los datos se conservarán únicamente durante el tiempo necesario para esas finalidades y, en cualquier caso, no más de **[indicar plazo, por ejemplo: 7 días / 30 días]**, salvo que deban conservarse más tiempo para cumplir obligaciones legales o para la investigación de incidentes de seguridad.
+Los datos se conservarán únicamente durante el tiempo necesario para esas finalidades y, en cualquier caso, no más de **30 días**, salvo que deban conservarse más tiempo para cumplir obligaciones legales o para la investigación de incidentes de seguridad.
 
 #### 2. Cookies
 
@@ -97,4 +94,3 @@ El responsable se reserva el derecho a modificar esta política de privacidad pa
 
 Los cambios no serán notificados de forma individual, por lo que se recomienda consultar esta página periódicamente. El uso continuado del sitio web implicará la aceptación de la política de privacidad vigente en cada momento.
 
-**Última actualización:** **[fecha]**

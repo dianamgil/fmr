@@ -5,11 +5,12 @@ import ProfileHeader from '../components/ProfileHeader.astro';
 import  SociaLinksIcons  from '../components/SociaLinksIcons.astro';
 import LinkButton from '../components/LinkButton.astro';
 import Dropdown from '../components/Dropdown.astro';
+import { Icon } from 'astro-icon/components';
 import '../styles/global.css';
 
 const user = await getUser(); // esto permite que si user no existe, la página falle en lugar de renderizarse con datos indefinidos
 
-
+const year = new Date().getFullYear();
 
 ---
 <!-- SocialIcons socials={user.links} -->
@@ -25,17 +26,26 @@ const user = await getUser(); // esto permite que si user no existe, la página 
       <ProfileHeader user={user} />
       <SociaLinksIcons socials={user.links} ids={['in_link', 'facebook_link', 'email_link']} />
 
-      <section class="w-full flex flex-col gap-3 mt-4">
+      <section class="w-full flex flex-col gap-3 m-6">
         <LinkButton  socials={user.links}  />
               <Dropdown label="About Me" 
               links={[
                 { href: '/aboutme/bio', text: 'Bio' },
                 { href: '/aboutme/teaching', text: 'Teaching' },
+                { href: '/aboutme/publications', text: 'Publicaciones' },
                 { href: '/aboutme/research', text: 'Research' },]}
                />
       </section>
       
 
     </main>
+  
+      <footer class="mt-auto pt-10">
+      <span class="inline-flex items-center justify-center gap-1 text-sm text-slate-400">
+        <Icon name="mdi:copyright" class="w-4 h-4" aria-label="Copyright" />
+        {year} Fernando Martín Rivera.
+      </span>
+      </footer>
+    
   </body>
 </html> 
