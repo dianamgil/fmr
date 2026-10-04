@@ -46,16 +46,14 @@ Deferred scaling options (documented, not started):
 ## 4. Data Layer (Content Collections)
 
 - `src/content.config.ts`
-  - Defines the `user` collection.
-  - Uses Zod for data validation.
-  - Uses the `glob` loader from Astro Content Collections.
+  - Defines the `user`, `legal` and `publications` collections.
+  - Uses the `glob` loader (`user`, `legal`) and the `file` loader (`publications`).
   - Must remain at this exact path: `src/content.config.ts`.
-  - Do NOT use the legacy Content Collections configuration.
+  
 
 - `src/content/user/profile.json`
   - Contains the professor's profile data.
   - Currently contains a single profile entry with id `profile`.
-  - The `publications` field is currently omitted and defaults to an empty array.
  - Real client data is present in this file.
 
 `src/lib/getUser.ts`
@@ -79,7 +77,7 @@ Deferred scaling options (documented, not started):
 ```json
 { "id": "linkedin", "name": "LinkedIn", "url": "https://...", "icon": "linkedin" }
 ```
-- `id` — stable identifier per link (also lets components select by id; doubles as the future DB primary key, same convention as `publications[].id`).
+- `id` — stable identifier per link (also lets components select by id; doubles as the future DB primary key, same convention as the `id` of each entry in the `publications` collection).
 - `name` — display text (renamed from the old `title`/`name` split for consistency).
 - `url` — external URL or internal path (`/projects`); `LinkButton`/`SocialIcons` detect external vs internal via `url.startsWith('http')`.
 - `icon` — optional icon identifier resolved by `astro-icon` (`mdi:` set) or a local SVG in `src/icons/` (see below).
@@ -100,6 +98,39 @@ export interface Props {
 const filtered = ids
   .map((id) => socials.find((social) => social.id === id))
   .filter((social): social is LinkItem => Boolean(social)); // order follows `ids`, not the source array
+
+
+### `publications` Collection (decision of October 4, 2026)
+
+Publications are no longer a `publications[]` field within `user` and are now part of a separate collection.
+
+**Files**
+- `src/content.config.ts`: new `publications` collection with the loader `file(“src/content/publications/publications.json”)`, exported in `collections`.
+- `src/content/publications/publications.json`: a single JSON array; each object is a publication.
+- `src/lib/getPublications.ts`: single point of entry (same pattern as `getUser.ts`). Uses `getCollection(“publications”)`, returns only `entry.data` sorted by year in descending order, and exports the `Publication` type.
+- `src/components/Publications.astro`: receives `publications: Publication[]` via props. If the array is empty, it displays “No publications are available yet.” (no error is thrown).
+- `publications` is removed from `userCollection` and `profile.json`.
+
+**Schema (Zod)**
+- `id`: `pub-YYYY-NNNNN`, manually assigned, unique, and stable.
+- `year`, `title`, `journal`: required.
+- `authors[]`: `{ name, isMe }`. `isMe: true` only for “Fernando Martín-Rivera” (validated with `refine`) and displayed in bold with `<b>`, without `set:html` (XSS rule, NFR 3).
+- `doi` (validated with a regular expression) or `url` when there is no DOI. The component links to `https://doi.org/{doi}` or to `url`.
+- Deferred: `abstract`, image, and `type` (article/conference).
+
+**Why a Separate `user` Collection**
+1. **Migration to NestJS (Option B):** Each JSON object corresponds to a row in a future `publications` table related to `users`. During migration, only the contents of `getPublications.ts` change (from `getCollection` to `fetch` from the API); pages and components remain unchanged.
+2. **Input validation:** Zod validates each publication separately, and the error indicates its `id`. Within `user`, a failure in a single publication would invalidate the entire profile—and with it, all pages (`BaseLayout` calls `getUser()`).
+3. **Separation of concerns:** `profile.json` remains small and stable (personal data). Posts grow (58 today) without affecting the profile.
+4. **Data scalability (NFR 2):** Independent collections allow for pagination, filtering, or sorting of posts without loading the profile, and in a multi-tenant setup, each teacher will have N posts, not an embedded array.
+5. **Performance:** No impact on Lighthouse scores; everything is resolved during the build, and the page remains static HTML.
+
+**Why `file()` and not `glob()` in the function that exports the collection (src\lib\getPublications.ts)`**
+- `file()`: a single JSON file with N entries, each with its own `id`. This is the easiest to maintain.
+- `glob()` (one file per publication) is reserved for when a CMS (Decap) is in use.
+- Caution: With `file()`, a duplicate `id` only triggers a warning, and an entry is lost; check the IDs when adding publications.
+- Do not use `getEntry(‘publications’, ‘publications’)`: With `file()`, the file itself is not an entry; the entries are the objects in the array.
+
 - 
 ### Architectural decision
 
@@ -108,6 +139,8 @@ The current implementation uses Astro Content Collections for static, build-time
 The data-access layer must remain centralized so that it can later be replaced by API calls when the project migrates to the planned backend architecture (`NestJS + database + JWT authentication`).
 
 Zod is the source of truth for data validation and should remain aligned with the future data model.
+
+
 
 5. Static Assets
 public/images/avatar.jpg — profile photo
