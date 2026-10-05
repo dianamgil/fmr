@@ -7,6 +7,8 @@ export async function getPublications(limit?: number) {
 
   const sortedEntries = (await getCollection('publications'))
 
+  
+
 // COMPROBAR QUE HAY PUBLICACIONES (si el JSON está vacío, el build se detiene)
  // if (sortedEntries.length === 0) {
     //throw new Error('No hay publicaciones en publications.json'); 
@@ -15,7 +17,7 @@ export async function getPublications(limit?: number) {
       ...entry.data,                                                                 // datos de cada publicación
       href: entry.data.doi ? `https://doi.org/${entry.data.doi}` : entry.data.url,   // enlace listo: DOI primero, url si no hay DOI
     }))
-    .sort((a, b) => b.year - a.year || b.id.localeCompare(a.id));                   // ordenar por mas reciente y por id descendente
+    .sort((a, b) => b.date - a.date || b.id.localeCompare(a.id));                   // ordenar por mas reciente y por id descendente
 
   return limit ? sortedEntries.slice(0, limit) : sortedEntries;                    // 0,limit --> sin limit = todas
 }

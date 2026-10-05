@@ -1,7 +1,11 @@
 import { defineCollection, z } from 'astro:content'; // importa las funciones necesarias para definir colecciones de contenido y validación de esquemas con Zod
 import { glob, file } from 'astro/loaders'; // importa el loader glob para buscar archivos con un patrón específico
+import type { date } from 'astro/zod';
 
-const DOI_REGEX = /^10\.\d{4,9}\/[-._;()/:a-zA-Z0-9]+$/;
+
+
+const DOI_REGEX = /^10\.\d{4,9}\/[-._;()/:a-zA-Z0-9]+$/; // Expresión regular para validar DOI 
+const CURRENT_YM = new Date().toISOString().slice(0, 7); // recoge de la fecha actual año-mes(yyyy-mm) para luego validr fecha de publicacion 
 
 
 //----------------------------COLECCIÓN DE USUARIO ------------
@@ -10,7 +14,7 @@ const userCollection = defineCollection({
 
 
   loader: glob({ pattern: '**/*.json', base: './src/content/user' }), //glob-->Buscador de archivos .json dentro de carpeta src/content/user
-  schema: z.object({ //define estructura de datos esperada (reglas de validación de datos Zod)
+  schema: z.object({                                                  //define estructura de datos esperada (reglas de validación de datos Zod)
 
     name: z.string(),
     role: z.string(),
@@ -21,16 +25,16 @@ const userCollection = defineCollection({
     email: z.string().email(),
     cv: z.string(),
     skills:z.array(
-      z.string().trim().min(1)).default([]), //lista simple de habilidades (ej. MATLAB, R); default sin skills, la sección no se pinta si no hay skills
+      z.string().trim().min(1)).default([]),                                 //lista simple de habilidades (ej. MATLAB, R); default sin skills, la sección no se pinta si no hay skills
     teaching: z.array(
       z.object({
         period: z.string().regex(/^\d{4}-\d{0,4}$/, ).refine((val) => {
-            const [startStr, endStr] = val.split('-'); // separa "2020-2024" en ["2020", "2024"], o "2020-" en ["2020", ""]
+            const [startStr, endStr] = val.split('-');                    // separa "2020-2024" en ["2020", "2024"], o "2020-" en ["2020", ""]
             const start = Number(startStr);
-            if (start < 1950 || start > 2100) return false; // año inicial fuera de rango razonable
+            if (start < 1950 || start > 2100) return false;             // año inicial fuera de rango razonable
             if (endStr) { // si hay año final existe
               const end = Number(endStr);
-              if (end < 1950 || end > 2100 || end < start) return false; // valida que sea superior al año inicial y dentro de rango
+              if (end < 1950 || end > 2100 || end < start) return false;  // valida que sea superior al año inicial y dentro de rango
             }
             return true; // pasa la validación
             },),
@@ -41,7 +45,7 @@ const userCollection = defineCollection({
     ),
     links: z.array(
       z.object({
-        id: z.string(), // Agregar un campo "id" para cada publicación, Escalable con Nest.js.(repeatable, future CRUD/DB rows)
+        id: z.string(),                                                     // Agregar un campo "id" para cada publicación, Escalable con Nest.js.(repeatable, future CRUD/DB rows)
         name: z.string(),
         url: z.string(),
         icon: z.string().optional()
@@ -55,11 +59,14 @@ const userCollection = defineCollection({
 
 const publicationsCollection = defineCollection({
 
-  loader: file ('src/content/publications/publications.json'), // cada objeto publicaion con "id" único
+  loader: file ('src/content/publications/publications.json'),                      // cada objeto publicaion con "id" único
   schema: z.object({
-    id: z.string().regex(/^pub-\d{4}-\d{5}$/, 'id debe ser pub-AAAA-NNNNN'),
+    id: z.string().regex(/^pub-\d{4}-\d{5}$/, 'id debe ser pub-AAAA-NNNNN'),       //valida solo si el string es exactamente pub-####-#####
     doi: z.string().trim().regex(DOI_REGEX, 'DOI no válido').optional(),
-    year: z.number().int().min(1950).max(new Date().getFullYear()),
+    date: z.string()
+      .regex(/^(19[5-9]\d|20\d{2})-(0[1-9]|1[0-2])$/, 'date debe ser AAAA-MM')    // formato sea correcto (YYYY-MM y rango de años(1950-2099)/meses válido 1-12
+      .refine((d) => d <= CURRENT_YM, 'Fecha no puede ser futura'),              // valida que la fecha no sea futura
+
     title: z.string().trim().min(1),
     authors: z.array(z.object({
       name: z.string().trim().min(1),

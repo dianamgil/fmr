@@ -1,7 +1,7 @@
 [
-   {
-    "id": "pub-2026-00001",
-    "year": 2026,
+  {
+    "id": "pub-2026-00058",
+    "date": "2026-05",
     "title": "Microdosing of Flywheel Training: Effects of Low Versus High Training Frequency on Muscle Mass, Strength, and Power",
     "authors": [
       {
@@ -27,8 +27,8 @@
     "image": "/images/pub-2026-00001.png"
   },
   {
-    "id": "pub-2026-00002",
-    "year": 2026,
+    "id": "pub-2026-00057",
+    "date": "2026-05",
     "title": "Attentional Cueing Modifies the Observed Association Between Post-Set Lactate and Velocity Loss During Smith Machine Bench Press",
     "authors": [
       {
@@ -46,12 +46,13 @@
       }
     ],
     "journal": "Journal of Functional Morphology and Kinesiology",
-    "doi": "10.3390/jfmk11020189","abstract": "Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum.",
+    "doi": "10.3390/jfmk11020189",
+    "abstract": "Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum.",
     "image": "/images/pub-2026-00002.png."
-  }, 
-   {
-    "id": "pub-2026-00003",
-    "year": 2026,
+  },
+  {
+    "id": "pub-2026-00056",
+    "date": "2026-03",
     "title": "From Physiology to Practice: Validation of Eccentric Velocity Monitoring Using an Optoelectronic System",
     "authors": [
       {
@@ -70,9 +71,10 @@
     ],
     "journal": "Sensors",
     "doi": "10.3390/s26061797"
-  },{
-    "id": "pub-2026-00004",
-    "year": 2026,
+  },
+  {
+    "id": "pub-2026-00055",
+    "date": "2026-02",
     "title": "Comparing Acute Effects of Caffeine Delivery Forms on Cross-Training Performance: A Randomized Placebo-Controlled Crossover Trial",
     "authors": [
       {
@@ -102,8 +104,8 @@
     "doi": "10.3390/nu18040657"
   },
   {
-    "id": "pub-2025-00005",
-    "year": 2025,
+    "id": "pub-2025-00054",
+    "date": "2025-10",
     "title": "Impact of Resistance Exercise in Type 1 Diabetes Pediatric Patients",
     "authors": [
       {
@@ -124,8 +126,8 @@
     "doi": "10.4239/wjd.v16.i10.111337"
   },
   {
-    "id": "pub-2025-00006",
-    "year": 2025,
+    "id": "pub-2025-00053",
+    "date": "2025-08",
     "title": "Evaluating a New Optical Device for Velocity-Based Training: Validity and Reliability of the PowerTrack™ Sensor",
     "authors": [
       {
@@ -152,8 +154,8 @@
     "doi": "10.3390/metrology5030049"
   },
   {
-    "id": "pub-2025-00007",
-    "year": 2025,
+    "id": "pub-2025-00052",
+    "date": "2025-06",
     "title": "Muscular excitation and oxygen extraction responses in power-generating and stabilizing muscles during a graded cycling test",
     "authors": [
       {
@@ -183,8 +185,8 @@
     "doi": "10.1080/02640414.2025.2518015"
   },
   {
-    "id": "pub-2025-00008",
-    "year": 2025,
+    "id": "pub-2025-00051",
+    "date": "2025-06",
     "title": "Exploring the Rating of Perceived Exertion in the First Repetition (RPE-1) on Post-Activation Performance Enhancement in Trained Individuals: A Pilot Study",
     "authors": [
       {
@@ -211,8 +213,8 @@
     "doi": "10.3390/sports13060183"
   },
   {
-    "id": "pub-2025-00009",
-    "year": 2025,
+    "id": "pub-2025-00050",
+    "date": "2025-04",
     "title": "Dietary Nucleotides Enhance Neurogenesis, Cognitive Capacity, Muscle Function, and Body Composition in Older Adults: A Randomized, Triple-Blind, Controlled Clinical Trial",
     "authors": [
       {
@@ -251,8 +253,8 @@
     "doi": "10.3390/nu17091431"
   },
   {
-    "id": "pub-2025-00010",
-    "year": 2025,
+    "id": "pub-2025-00049",
+    "date": "2025-02",
     "title": "Effects of Accentuated Eccentric and Maximal Strength High-Resistance Training Programs with or Without a Curcumin-Based Formulation Supplement on Body Composition, Blood Pressure, and Metabolic Parameters in Older Adults",
     "authors": [
       {
@@ -336,8 +338,8 @@
     "doi": "10.3390/diseases13020062"
   },
   {
-    "id": "pub-2024-00011",
-    "year": 2024,
+    "id": "pub-2024-00048",
+    "date": "2024-10",
     "title": "Editorial: Physical exercise and diabetes: exploring the relationship and impact on health outcome",
     "authors": [
       {
@@ -355,8 +357,8 @@
     "doi": "10.3389/fendo.2024.1505709"
   },
   {
-    "id": "pub-2024-00012",
-    "year": 2024,
+    "id": "pub-2024-00047",
+    "date": "2024-04",
     "title": "Acute physiological and psychological responses during an incremental treadmill test wearing a new upper-body sports garment with elastomeric technology",
     "authors": [
       {
@@ -383,8 +385,8 @@
     "doi": "10.3389/fphys.2024.1372020"
   },
   {
-    "id": "pub-2024-00013",
-    "year": 2024,
+    "id": "pub-2024-00046",
+    "date": "2024-03",
     "title": "Force Production and Electromyographic Activity during Different Flywheel Deadlift Exercises",
     "authors": [
       {
@@ -414,8 +416,8 @@
     "doi": "10.3390/sports12040095"
   },
   {
-    "id": "pub-2024-00014",
-    "year": 2024,
+    "id": "pub-2024-00045",
+    "date": "2024-01",
     "title": "Current Guidelines for the Implementation of Flywheel Resistance Training Technology in Sports: A Consensus Statement",
     "authors": [
       {
@@ -439,8 +441,8 @@
     "doi": "10.1007/s40279-023-01979-x"
   },
   {
-    "id": "pub-2023-00015",
-    "year": 2023,
+    "id": "pub-2023-00044",
+    "date": "2023-06",
     "title": "Effects of submaximal and supramaximal accentuated eccentric loading on mass and function",
     "authors": [
       {
@@ -467,8 +469,8 @@
     "doi": "10.3389/fphys.2023.1176835"
   },
   {
-    "id": "pub-2023-00016",
-    "year": 2023,
+    "id": "pub-2023-00043",
+    "date": "2023-05",
     "title": "Exercise interventions for patients with type 1 diabetes mellitus: A narrative review with practical recommendations",
     "authors": [
       {
@@ -489,8 +491,8 @@
     "doi": "10.4239/wjd.v14.i5.539"
   },
   {
-    "id": "pub-2023-00017",
-    "year": 2023,
+    "id": "pub-2023-00042",
+    "date": "2023-02",
     "title": "Validity and Reliability of Inertial Measurement System for Linear Movement Velocity in Flywheel Squat Exercise",
     "authors": [
       {
@@ -511,8 +513,8 @@
     "doi": "10.3390/s23042193"
   },
   {
-    "id": "pub-2023-00018",
-    "year": 2023,
+    "id": "pub-2023-00041",
+    "date": "2023-01",
     "title": "Effects of an elastomeric technology garment on different external and internal load variables: A pilot study",
     "authors": [
       {
@@ -542,8 +544,8 @@
     "doi": "10.55860/BXNK5984"
   },
   {
-    "id": "pub-2022-00019",
-    "year": 2022,
+    "id": "pub-2022-00040",
+    "date": "2022-11",
     "title": "Effect of attentional focus on squats on lactate production and rating of perceived exertion in trained men",
     "authors": [
       {
@@ -567,8 +569,8 @@
     "doi": "10.47197/retos.v47.94631"
   },
   {
-    "id": "pub-2022-00020",
-    "year": 2022,
+    "id": "pub-2022-00039",
+    "date": "2022-08",
     "title": "Acute intraocular pressure responses to resistance exercise in combination with blood flow restriction.",
     "authors": [
       {
@@ -601,8 +603,8 @@
     "doi": "10.1080/02701367.2022.2119197"
   },
   {
-    "id": "pub-2022-00021",
-    "year": 2022,
+    "id": "pub-2022-00038",
+    "date": "2022-08",
     "title": "Use of concentric linear velocity to monitor flywheel exercise load",
     "authors": [
       {
@@ -621,9 +623,10 @@
     ],
     "journal": "Frontiers in Physiology",
     "doi": "10.3389/fphys.2022.961572"
-  },{
-    "id": "pub-2022-00022",
-    "year": 2022,
+  },
+  {
+    "id": "pub-2022-00037",
+    "date": "2022-06",
     "title": "The influence of calculation method and relative strength on the load-velocity relationship in bench press exercise",
     "authors": [
       {
@@ -647,8 +650,8 @@
     "doi": "10.1177/17479541211035499"
   },
   {
-    "id": "pub-2022-00023",
-    "year": 2022,
+    "id": "pub-2022-00036",
+    "date": "2022-01",
     "title": "Effects of ankle position during the Nordic Hamstring exercise on range of motion, heel contact force and hamstring muscle activation",
     "authors": [
       {
@@ -675,8 +678,8 @@
     "doi": "10.1080/14763141.2021.2025416"
   },
   {
-    "id": "pub-2021-00024",
-    "year": 2021,
+    "id": "pub-2021-00035",
+    "date": "2021-11",
     "title": "Effect of High-Intensity Interval Training on Quality of Life, Sleep Quality, Exercise Motivation and Enjoyment in Sedentary People with Type 1 Diabetes Mellitus",
     "authors": [
       {
@@ -697,8 +700,8 @@
     "doi": "10.3390/ijerph182312612"
   },
   {
-    "id": "pub-2021-00025",
-    "year": 2021,
+    "id": "pub-2021-00034",
+    "date": "2021-11",
     "title": "Differences in the load-velocity relationship between untrained men and women during the back squat exercise",
     "authors": [
       {
@@ -716,8 +719,8 @@
     "doi": "10.33233/rbfex.v20i3.4623"
   },
   {
-    "id": "pub-2021-00026",
-    "year": 2021,
+    "id": "pub-2021-00033",
+    "date": "2021-03",
     "title": "The effects of the Nordic hamstring exercise on sprint performance and eccentric knee flexor strength: A systematic review and meta-analysis of intervention studies among team sport players",
     "authors": [
       {
@@ -744,8 +747,8 @@
     "doi": "10.1016/j.jsams.2021.03.009"
   },
   {
-    "id": "pub-2021-00027",
-    "year": 2021,
+    "id": "pub-2021-00032",
+    "date": "2021-01",
     "title": "Effects of a HIIT Protocol on Cardiovascular Risk Factors in a Type 1 Diabetes Mellitus Population",
     "authors": [
       {
@@ -766,8 +769,8 @@
     "doi": "10.3390/ijerph18031262"
   },
   {
-    "id": "pub-2021-00028",
-    "year": 2021,
+    "id": "pub-2021-00031",
+    "date": "2021-01",
     "title": "Effects of power resistance training program with elastic bands on body composition, muscle strength and physical function in older women",
     "authors": [
       {
@@ -794,8 +797,8 @@
     "doi": "10.14198/jhse.2020.15.Proc4.30"
   },
   {
-    "id": "pub-2021-00029",
-    "year": 2021,
+    "id": "pub-2021-00030",
+    "date": "2021-05",
     "title": "Plyo-Accentuated Eccentric Loading Methods to Enhance Lower Limb Muscle Power",
     "authors": [
       {
@@ -816,8 +819,8 @@
     "doi": "10.1519/SSC.0000000000000635"
   },
   {
-    "id": "pub-2021-00030",
-    "year": 2021,
+    "id": "pub-2021-00029",
+    "date": "2021-01",
     "title": "Effects of Cornus mas extract combined with aerobic and resistance exercise on blood metabolic parameters and liver enzymes of obese rats",
     "authors": [
       {
@@ -850,8 +853,8 @@
     "doi": "10.14198/jhse.2021.16.Proc2.48"
   },
   {
-    "id": "pub-2020-00031",
-    "year": 2020,
+    "id": "pub-2020-00028",
+    "date": "2020-12",
     "title": "Effect of a HIIT protocol on the lower limb muscle power, ankle dorsiflexion and dynamic balance in a sedentary type 1 diabetes mellitus population: a pilot study",
     "authors": [
       {
@@ -872,8 +875,8 @@
     "doi": "10.7717/peerj.10510"
   },
   {
-    "id": "pub-2021-00032",
-    "year": 2021,
+    "id": "pub-2021-00027",
+    "date": "2021-10",
     "title": "Contribuições da velocidade de movimento para o treinamento resistido: uma revisão narrativa",
     "authors": [
       {
@@ -891,8 +894,8 @@
     "doi": "10.33233/rbfex.v19i4.3892"
   },
   {
-    "id": "pub-2020-00033",
-    "year": 2020,
+    "id": "pub-2020-00026",
+    "date": "2020-08",
     "title": "Effects of three cluster-based resistance training protocols on strength and body composition in trained men maintaining a high protein diet",
     "authors": [
       {
@@ -928,8 +931,8 @@
     "doi": "10.1186/s12970-020-00352-x"
   },
   {
-    "id": "pub-2020-00034",
-    "year": 2020,
+    "id": "pub-2020-00025",
+    "date": "2020-06",
     "title": "Post-activation performance enhancement (PAPE) after a single-bout of high-intensity flywheel resistance training",
     "authors": [
       {
@@ -947,8 +950,8 @@
     "doi": "10.5114/biolsport.2020.96318"
   },
   {
-    "id": "pub-2020-00035",
-    "year": 2020,
+    "id": "pub-2020-00024",
+    "date": "2020-05",
     "title": "Effects of cluster training on body composition and strength in resistance-trained men",
     "authors": [
       {
@@ -982,9 +985,10 @@
     ],
     "journal": "Isokinetics and Exercise Science",
     "doi": "10.3233/IES-205122"
-  },{
-    "id": "pub-2020-00036",
-    "year": 2020,
+  },
+  {
+    "id": "pub-2020-00023",
+    "date": "2020-01",
     "title": "Comparison of blood lactate and perceived exertion responses in two matched time-under-tension protocols",
     "authors": [
       {
@@ -1020,8 +1024,8 @@
     "doi": "10.1371/journal.pone.0227640"
   },
   {
-    "id": "pub-2018-00037",
-    "year": 2018,
+    "id": "pub-2018-00022",
+    "date": "2018-10",
     "title": "Reliability and concurrent validity of the Velowin optoelectronic system to measure movement velocity during the free-weight back squat",
     "authors": [
       {
@@ -1039,8 +1043,8 @@
     "doi": "10.1177/1747954118791525"
   },
   {
-    "id": "pub-2018-00038",
-    "year": 2018,
+    "id": "pub-2018-00021",
+    "date": "2018-08",
     "title": "Electromyographic Effect of Using Different Attentional Foci During the Front Plank Exercise",
     "authors": [
       {
@@ -1067,8 +1071,8 @@
     "doi": "10.1097/PHM.0000000000001008"
   },
   {
-    "id": "pub-2017-00039",
-    "year": 2017,
+    "id": "pub-2017-00020",
+    "date": "2017-07",
     "title": "Relationship between the modified star excursion balance test and the 4x10 m shuttle run test in children",
     "authors": [
       {
@@ -1095,8 +1099,8 @@
     "doi": "10.12800/ccd.v12i35.882"
   },
   {
-    "id": "pub-2017-00040",
-    "year": 2017,
+    "id": "pub-2017-00019",
+    "date": "2017-02",
     "title": "Progression of Core Stability Exercises Based on the Extent of Muscle Activity",
     "authors": [
       {
@@ -1123,8 +1127,8 @@
     "doi": "10.1097/PHM.0000000000000713"
   },
   {
-    "id": "pub-2017-00041",
-    "year": 2017,
+    "id": "pub-2017-00018",
+    "date": "2017-01",
     "title": "Trunk muscle activity during different variations of the supine plank exercise",
     "authors": [
       {
@@ -1160,8 +1164,8 @@
     "doi": "10.1016/j.msksp.2017.01.011"
   },
   {
-    "id": "pub-2015-00042",
-    "year": 2015,
+    "id": "pub-2015-00017",
+    "date": "2015-11",
     "title": "Core Muscle activity during the clean and jerk lift with barbell versus sandbags and water bags",
     "authors": [
       {
@@ -1188,8 +1192,8 @@
     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4637915/"
   },
   {
-    "id": "pub-2015-00043",
-    "year": 2015,
+    "id": "pub-2015-00016",
+    "date": "2015-09",
     "title": "Muscle activation during push-ups performed under stable and unstable conditions",
     "authors": [
       {
@@ -1216,8 +1220,8 @@
     "doi": "10.1016/j.jesf.2015.07.002"
   },
   {
-    "id": "pub-2015-00044",
-    "year": 2015,
+    "id": "pub-2015-00015",
+    "date": "2015-05",
     "title": "Core muscle activity in a series of balance exercises with different stability conditions",
     "authors": [
       {
@@ -1238,8 +1242,8 @@
     "doi": "10.1016/j.gaitpost.2015.05.008"
   },
   {
-    "id": "pub-2015-00045",
-    "year": 2015,
+    "id": "pub-2015-00014",
+    "date": "2015-05",
     "title": "Effects Of Elastic Band Training On Ball Velocity In The Spanish Racquetball Serve",
     "authors": [
       {
@@ -1266,8 +1270,8 @@
     "doi": "10.1249/01.mss.0000478175.64651.7f"
   },
   {
-    "id": "pub-2015-00046",
-    "year": 2015,
+    "id": "pub-2015-00013",
+    "date": "2015-04",
     "title": "Muscle Activity During Unilateral vs. Bilateral Battle Rope Exercises",
     "authors": [
       {
@@ -1294,8 +1298,8 @@
     "doi": "10.1519/JSC.0000000000000963"
   },
   {
-    "id": "pub-2015-00047",
-    "year": 2015,
+    "id": "pub-2015-00012",
+    "date": "2015-04",
     "title": "The validity and reliability of a new instrumented device for measuring ankle dorsiflexion range of motion",
     "authors": [
       {
@@ -1322,8 +1326,8 @@
     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4387727/"
   },
   {
-    "id": "pub-2014-00048",
-    "year": 2014,
+    "id": "pub-2014-00011",
+    "date": "2014-12",
     "title": "Shoulder muscle activation during stable and suspended push-ups at different heights in healthy subjects",
     "authors": [
       {
@@ -1353,8 +1357,8 @@
     "doi": "10.1016/j.ptsp.2014.12.004"
   },
   {
-    "id": "pub-2014-00049",
-    "year": 2014,
+    "id": "pub-2014-00010",
+    "date": "2014-12",
     "title": "Muscle activation differences between stable push-ups and push-ups with a unilateral v-shaped suspension system at different heights",
     "authors": [
       {
@@ -1379,9 +1383,10 @@
     ],
     "journal": "Motricidade",
     "doi": "10.6063/motricidade.3395"
-  }, {
-    "id": "pub-2014-00050",
-    "year": 2014,
+  },
+  {
+    "id": "pub-2014-00009",
+    "date": "2014",
     "title": "Muscle Activity Levels in Upper-Body Push Exercises With Different Loads and Stability Conditions",
     "authors": [
       {
@@ -1405,8 +1410,8 @@
     "doi": "10.3810/psm.2014.11.2097"
   },
   {
-    "id": "pub-2014-00051",
-    "year": 2014,
+    "id": "pub-2014-00008",
+    "date": "2014-11",
     "title": "Test-Retest Reliability of the Star Excursion Balance Test in Primary School Children",
     "authors": [
       {
@@ -1430,8 +1435,8 @@
     "doi": "10.3810/psm.2014.11.2098"
   },
   {
-    "id": "pub-2014-00052",
-    "year": 2014,
+    "id": "pub-2014-00007",
+    "date": "2014-09",
     "title": "Core y sistema de control neuro-motor: mecanismos básicos para la estabilidad del raquis lumbar",
     "authors": [
       {
@@ -1467,8 +1472,8 @@
     "doi": "10.1590/S1807-55092014005000005"
   },
   {
-    "id": "pub-2014-00053",
-    "year": 2014,
+    "id": "pub-2014-00006",
+    "date": "2014-09",
     "title": "Muscle Activation during Push-Ups with Different Suspension Training Systems",
     "authors": [
       {
@@ -1498,8 +1503,8 @@
     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4126284/"
   },
   {
-    "id": "pub-2015-00054",
-    "year": 2015,
+    "id": "pub-2015-00005",
+    "date": "2014-06",
     "title": "Bench Press and Push-up at Comparable Levels of Muscle Activity Results in Similar Strength Gains",
     "authors": [
       {
@@ -1520,8 +1525,8 @@
     "doi": "10.1519/JSC.0000000000000589"
   },
   {
-    "id": "pub-2014-00055",
-    "year": 2014,
+    "id": "pub-2014-00004",
+    "date": "2014-05",
     "title": "Muscle Activation in Young Men During a Lower Limb Aquatic Resistance Exercise With Different Devices",
     "authors": [
       {
@@ -1545,8 +1550,8 @@
     "doi": "10.3810/psm.2014.05.2060"
   },
   {
-    "id": "pub-2014-00056",
-    "year": 2014,
+    "id": "pub-2014-00003",
+    "date": "2014-05",
     "title": "Neuromuscular Comparison Of Push-up Variations And Bench Press:",
     "authors": [
       {
@@ -1567,9 +1572,9 @@
     "doi": "10.1249/01.mss.0000495482.31114.5f"
   },
   {
-    "id": "pub-2013-00057",
-    "year": 2013,
-    "title": "Generalidades del ‘HIT’ aplicado a esfuerzos cardiovasculares en los programas de salud y fitness",
+    "id": "pub-2013-00002",
+    "date": "2013-09",
+    "title": "Generalidades del <HIT> aplicado a esfuerzos cardiovasculares en los programas de salud y fitness",
     "authors": [
       {
         "name": "Guillermo Peña García-Orea"
@@ -1598,8 +1603,8 @@
     "url": "https://www.efdeportes.com/efd183/hit-aplicado-a-esfuerzos-cardiovasculares.htm"
   },
   {
-    "id": "pub-2013-00058",
-    "year": 2013,
+    "id": "pub-2013-00001",
+    "date": "2013-03",
     "title": "Neuromuscular Responses During Aquatic Resistance Exercise With Different Devices and Depths",
     "authors": [
       {
@@ -1628,5 +1633,4 @@
     "journal": "Journal of Strength and Conditioning Research",
     "doi": "10.1519/JSC.0b013e3182915ebe"
   }
-
 ]
