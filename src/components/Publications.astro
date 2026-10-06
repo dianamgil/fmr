@@ -37,9 +37,122 @@ const { publications } = Astro.props;
               {pub.doi ? 'DOI' : 'Ver artículo'}
               <Icon name="mdi:open-in-new" class="h-4 w-4" aria-hidden="true" />
             </a>
+
+             //responsive: en móvil puede bajar de línea junto al botón DOI 
+                // aqui se guarda el id de publciación para que el modal pueda cargar la cita correspondiente-->
+          <button type="button" data-cite-id={pub.id}
+                  aria-haspopup="dialog" aria-controls="cite-dialog"
+                  class="m-5 inline-flex items-center gap-1.5 rounded border border-slate-300 px-4 py-2 text-sm hover:bg-slate-50">
+            Citar
+            <Icon name="mdi:format-quote-close" class="h-4 w-4" aria-hidden="true" />
+          </button>
           )}
         </li>
       ))}
     </ol>
   )}
 </section>
+
+
+//<!-- DIALOG MODAL -->
+<!-- responsive: casi a pantalla completa en móvil; ancho máximo y padding mayor desde md -->
+<dialog id="cite-dialog" aria-labelledby="cite-title"
+        class="m-auto w-[calc(100%-2rem)] max-w-2xl max-h-[90vh] rounded-lg p-0 backdrop:bg-slate-900/50">
+  <div class="p-5 md:p-8">
+    <div class="flex items-start justify-between gap-4">
+      <h2 id="cite-title" class="text-xl font-bold md:text-2xl">Citar</h2>
+      <button type="button" data-cite-close aria-label="Cerrar" class="rounded p-1 hover:bg-slate-100">
+        <Icon name="mdi:close" class="h-6 w-6" aria-hidden="true" />
+      </button>
+    </div>
+
+    <!-- mensajes de carga/error, anunciados por lectores de pantalla -->
+    <p data-cite-status role="status" class="mt-4 text-sm text-slate-500"></p>
+
+    <!-- responsive: bloques apilados; más separación desde md -->
+    <div class="mt-4 space-y-6 md:space-y-7">
+      {[
+        { key: 'apa', label: 'APA', code: false },
+        { key: 'vancouver', label: 'Vancouver', code: false },
+        { key: 'bibtex', label: 'BibTeX', code: true },
+        { key: 'ris', label: 'RIS', code: true },
+      ].map((f) => (
+        <section data-format={f.key} hidden>
+          <div class="flex items-baseline gap-3">
+            <h3 class="font-bold">{f.label}</h3>
+            <button type="button" data-cite-copy class="text-sm text-slate-500 hover:text-slate-800">Copiar</button>
+          </div>
+          {/* responsive: en código, scroll horizontal para líneas largas sin romper el formato */}
+          {f.code ? (
+            <pre class="mt-2 overflow-x-auto rounded bg-slate-100 p-4 text-xs md:text-sm"><code data-cite-text></code></pre>
+          ) : (
+            <p data-cite-text class="mt-2 text-sm leading-relaxed text-slate-700 md:text-base"></p>
+          )}
+        </section>
+      ))}
+    </div>
+  </div>
+</dialog>
+
+<script>
+  // ── PASO 1: referenciar el MODAL DIALOG QEU SE VA ABRIR Y CERRAR ──
+  const dialog = document.getElementById('cite-dialog') as HTMLDialogElement;
+
+  // ── PASO 2: cargar y pintar ──
+  type Citations = Partial<Record<'apa' | 'vancouver' | 'bibtex' | 'ris', string>>;
+  const status = dialog.querySelector<HTMLElement>('[data-cite-status]')!;
+  const cache = new Map<string, Citations>();
+
+  //----AQUI con el id de la publicación, se hace fetch al endpoint de la publicación para obtener las citas en JSON
+  async function loadCitations(id: string): Promise<Citations> {
+    const cached = cache.get(id);
+    if (cached) return cached;
+    const res = await fetch(`/api/citations/${encodeURIComponent(id)}.json`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = (await res.json()) as Citations;
+    cache.set(id, data);
+    return data;
+  }
+//
+  function render(citations: Citations | null) {
+    dialog.querySelectorAll<HTMLElement>('[data-format]').forEach((block) => {
+      const text = citations?.[block.dataset.format as keyof Citations];
+      block.hidden = !text;
+      block.querySelector<HTMLElement>('[data-cite-text]')!.textContent = text ?? '';
+    });
+  }
+
+  // ── abrir ──
+  document.querySelectorAll<HTMLButtonElement>('[data-cite-id]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      render(null);
+      status.textContent = 'Cargando…';
+      dialog.showModal();
+      try {
+        render(await loadCitations(btn.dataset.citeId!));
+        status.textContent = '';
+      } catch {
+        status.textContent = 'No se pudieron cargar las citas. Inténtalo de nuevo.';
+      }
+    });
+  });
+
+  // ── cerrar ──
+  dialog.querySelector('[data-cite-close]')?.addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+
+  // ── PASO 3: copiar ──
+  dialog.querySelectorAll<HTMLButtonElement>('[data-cite-copy]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const text = btn.closest('[data-format]')?.querySelector('[data-cite-text]')?.textContent ?? '';
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = '¡Copiado!';
+        status.textContent = 'Cita copiada al portapapeles';
+      } catch {
+        btn.textContent = 'No se pudo copiar';
+      }
+      setTimeout(() => { btn.textContent = 'Copiar'; status.textContent = ''; }, 2000);
+    });
+  });
+</script>
