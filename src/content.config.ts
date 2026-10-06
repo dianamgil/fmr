@@ -2,10 +2,20 @@ import { defineCollection, z } from 'astro:content'; // importa las funciones ne
 import { glob, file } from 'astro/loaders'; // importa el loader glob para buscar archivos con un patrón específico
 import type { date } from 'astro/zod';
 
+//------para validar nombre usuario en revistas   
+const MY_NAMES = [
+  'Fernando Martín-Rivera',
+  'Fernando Martín Rivera',
+  'Fernando Martin-Rivera',
+  'Fernando Martin',
+];
 
-
+//------para valdiacion de publications--------------
 const DOI_REGEX = /^10\.\d{4,9}\/[-._;()/:a-zA-Z0-9]+$/; // Expresión regular para validar DOI 
 const CURRENT_YM = new Date().toISOString().slice(0, 7); // recoge de la fecha actual año-mes(yyyy-mm) para luego validr fecha de publicacion 
+const MOJIBAKE = /Ã|â€|Â|&amp;|�/;  // restos de UTF-8 mal decodificado (Ã­, â€“, &amp;...)
+const citationText = z.string().trim().min(1).refine((s) => !MOJIBAKE.test(s), 'Cita con mojibake');  // base común para todos los formatos
+
 
 
 //----------------------------COLECCIÓN DE USUARIO ------------
@@ -71,17 +81,35 @@ const publicationsCollection = defineCollection({
     authors: z.array(z.object({
       name: z.string().trim().min(1),
       isMe: z.boolean().default(false), // negrita <b>
-    }).refine((a) => !a.isMe || /^Fernando Martín[- ]Rivera$/.test(a.name), {
-      message: 'isMe solo para "Fernando Martín Rivera" o "Fernando Martín-Rivera"',
+    }).refine((a) => !a.isMe || MY_NAMES.includes(a.name), {
+      message: `isMe solo para: ${MY_NAMES.join(' / ')}`,
     })).min(1),
      journal: z.string().trim().min(1),
      url: z.string().trim().url().optional(), // sustituye al DOI cuando no hay (PMC o web de la revista)
      abstract: z.string().trim().optional(),
      image: z.string().trim().optional(),
+      citations: z.object({
+       apa: citationText,                   
+       vancouver: citationText.optional(),  
+       bibtex: citationText.refine((s) => s.startsWith('@'), 'BibTeX debe empezar por "@"')
+         .refine((s) => s.split('{').length === s.split('}').length, 'BibTeX con llaves desbalanceadas')
+         .refine((s) => /author\s*=/.test(s) && /title\s*=/.test(s) && /year\s*=/.test(s), 'BibTeX sin author/title/year')
+         .optional(),
+       ris: citationText.refine((s) => s.startsWith('TY  -'), 'RIS debe empezar por "TY  -"')
+         .refine((s) => s.endsWith('ER  -'), 'RIS debe terminar en "ER  -"')
+         .optional(),
+     }),
+     
+
+
+    
+
   }),
 });
 
-
+//citations: z.object({ })
+     // apa: z.string().trim().min(1),
+      //vancouver: z.string().trim().min(1),
 
 //----------------------------COLECCIÓN DE TEXTOS LEGALES privacidad, aviso legal... un .md por documento------------
 
