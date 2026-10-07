@@ -18,5 +18,6 @@ export async function getPublications(limit?: number) {
     }))
     .sort((a, b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id))     // más reciente primero; misma fecha → id mayor (más reciente) primero
     .slice(0, limit);                                                             // sin limit muestra todas las publicaciones
-}//Si cambia el schema de Zod, este tipo se actualiza solo. Se usa en las Props de Publications.astro
+}
+//SIN ESTE EL COMPONENTE NO PUEDE IMPORTAR EL TIPO Publication (que es el tipo de cada objeto del array devuelto por getPublications)
 export type Publication = Awaited<ReturnType<typeof getPublications>>[number]; 

@@ -16,6 +16,9 @@ const CURRENT_YM = new Date().toISOString().slice(0, 7); // recoge de la fecha a
 const MOJIBAKE = /Ã|â€|Â|&amp;|�/;  // restos de UTF-8 mal decodificado (Ã­, â€“, &amp;...)
 const citationText = z.string().trim().min(1).refine((s) => !MOJIBAKE.test(s), 'Cita con mojibake');  // base común para todos los formatos
 
+//------para validación de PERIODOS DE projects--------------
+const YEAR_MONTH = /^(20[5-9]\d|20\d{2})\/(0[1-9]|1[0-2])$/; // AAAA-MM, mismo formato que date de publications
+
 
 
 //----------------------------COLECCIÓN DE USUARIO ------------
@@ -104,6 +107,28 @@ const publicationsCollection = defineCollection({
 });
 
 
+//----------------------------COLECCIÓN DE PUBLICACIONES----
+
+const projectsColletion = defineCollection({
+  loader: file ('src/content/projects/projectsresearch.json'), 
+  schema: z.object({
+     id: z.string().regex(/^proj-\d{4}-\d{3}$/, 'id debe ser proj-AAAA-NNN'),                     // cada objeto publicaion con "id" único
+     title: z.string().trim().min(1),
+    code: z.string().trim().min(1),             // AEST/2020/024
+    funder: z.string().trim().min(1),
+    participants: z.number().int().positive().optional(),
+     role: z.string(),
+     start: z.string().regex(YEAR_MONTH, 'start debe ser AAAA-MM'),
+    end: z.string().regex(YEAR_MONTH, 'end debe ser AAAA-MM').optional(),    // sin end → "present"
+  }).refine((p) => !p.end || p.end >= p.start, { message: 'end no puede ser anterior a start', path: ['end'] }),
+
+  });
+  
+
+
+
+
+
 //----------------------------COLECCIÓN DE TEXTOS LEGALES privacidad, aviso legal... un .md por documento------------
 
 const legalCollection = defineCollection({
@@ -122,6 +147,7 @@ export const collections = {
   user: userCollection, //  "user" para poder acceder a ella con getCollection('user')
   publications: publicationsCollection, //  "publications" para poder usar los datos de publicaciones
   legal: legalCollection, //  "legal" para poder usar los textos legales 
+  projects: projectsColletion, //  "projects" para poder usar los proyectos de investigación
 };
 
 
