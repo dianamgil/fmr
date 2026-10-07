@@ -1,6 +1,6 @@
 import { defineCollection, z } from 'astro:content'; // importa las funciones necesarias para definir colecciones de contenido y validación de esquemas con Zod
 import { glob, file } from 'astro/loaders'; // importa el loader glob para buscar archivos con un patrón específico
-import type { date } from 'astro/zod';
+
 
 //------para validar nombre usuario en revistas   
 const MY_NAMES = [
@@ -29,6 +29,7 @@ const userCollection = defineCollection({
     name: z.string(),
     role: z.string(),
     university: z.string(),
+    universityLink: z.string().url(), //valida que sea un URL válido
     avatar: z.string(),
     bio: z.string() .max(150), // límite funcional: bio del ProfileHeader no puede superar 50 caracteres
     longBio: z.array(z.string().trim().min(1)).min(1), // bio larga: un string por párrafo, sin párrafos vacíos
@@ -99,17 +100,9 @@ const publicationsCollection = defineCollection({
          .refine((s) => s.endsWith('ER  -'), 'RIS debe terminar en "ER  -"')
          .optional(),
      }),
-     
-
-
-    
-
   }),
 });
 
-//citations: z.object({ })
-     // apa: z.string().trim().min(1),
-      //vancouver: z.string().trim().min(1),
 
 //----------------------------COLECCIÓN DE TEXTOS LEGALES privacidad, aviso legal... un .md por documento------------
 

@@ -11,8 +11,8 @@ export interface Props{
 const {user} = Astro.props; 
 
 const nav = [
-  { label: 'Home', href: '/' }, //lleva a pagina inicial
-  { label: 'Sobre mi', href: 'bio' },
+  { label: 'INICIO', href: '/' }, //lleva a pagina inicial
+  { label: 'Acerca de mí', href: 'bio' },
   { label: 'Docencia', href: 'teaching' },
   { label: 'Publicaciones', href: 'publications' },
   { label: 'Investigación', href: 'research' },
@@ -20,7 +20,7 @@ const nav = [
 ---
 
 
-<!-- responsive: botón visible solo en < lg; a la derecha para no tapar el nombre -->
+<!-- responsive: botón visible solo en < lg;  a la derecha para no tapar el nombre y desplegar SideBar -->
 <button
   id="sidebar-toggle"
   type="button"
@@ -39,35 +39,43 @@ const nav = [
     class="hidden md:hidden fixed inset-0 z-30 bg-black/40">
 </div>
 
-
 <aside id="mySidenav"
-     class="fixed inset-y-0 left-0  z-40 w-70
+     class="fixed inset-y-0 left-0  z-40 w-75
      -translate-x-full transition-transform duration-300 ease-out
       md:translate-x-0 
      bg-linear-to-r from-[#B0E0E6] to-[#E4F5F7] 
      overflow-y-auto px-8 py-10 lg:p-8 flex flex-col gap-6"> <!-- estilo global del sidebar --> <!-- lg:translate-x-0 responsive: en móvil fuera de pantalla hasta que el JS lo abra; desde lg siempre visible -->
 
  <!-- bloque 1 perfil  -->
-   <section class="flex items-start gap-5 pb-6 border-b border-white/40">
+   <section class="flex items-start gap-5 pb-2 border-b-3 border-white/40">
     <div class="flex flex-col gap-3">
         <h2 class="text-2xl font-bold">Fernando Martin, PhD</h2>
-        <p class="text-gray-600">Profesor Titular Sistemática del Movimiento</p>
+        <!-- <p class="text-gray-600">Profesor Titular Sistemática del Movimiento</p> -->
         <img class="w-40 h-40 object-cover shrink-0" src={user.avatar}/>
+        
+
+      <div class="flex flex-col gap-1 mt-8">
         <p class="text-gray-600">{user.role}</p>
-        <p class="text-gray-400">{user.university}</p>
-        <p class="text-gray-400">46010 Valencia, España</p>
+        <p class="text-gray-400">
+          <a href={user.universityLink} target="_blank" class="text-slate-600 hover:text-white">
+            {user.university}
+          </a></p>
+          <h4 class="text-gray-400">46010 Valencia, España</h4>
+        
+      </div>
+        <p ></p>
     </div>  
   </section> 
 
          <!-- bloque 2  Navegación -->
-    <nav class="flex flex-col gap-2 pb-6 border-b border-white/40">
+    <nav class="flex flex-col gap-2 pb-6 border-b-3 border-white/40">
          {nav.map((item) => (
             <a href={item.href} class="text-slate-600 hover:text-white">{item.label}</a>
             ))}
     </nav>
 <!-- bloque 3   rrss -->
          <div class="flex flex-col gap-2 items-start" >
-            <SociaLinksIcons socials={user.links} ids={[ 'rg_link', 'email_link','gs_link', 'cv_link']}
+            <SociaLinksIcons socials={user.links} ids={[ 'rg_link', 'email_link','gs_link', 'cv_link','orcid_link']}
             showLabels />
 
          </div>

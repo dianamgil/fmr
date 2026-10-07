@@ -102,37 +102,39 @@ const filtered = ids
   ```
 
 
-### `publications` Collection (decision of October 4, 2026)
+### `publications` Collection (decisions of October 4–6, 2026)
 
-Publications are no longer a `publications[]` field within `user` and are now part of a separate collection.
+Separate collection from `user`, loaded with `file('src/content/publications/publications.json')` (one JSON array, one object per publication; 57 as of 2026-10-06).
 
 **Files**
-- `src/content.config.ts`: new `publications` collection with the loader `file(“src/content/publications/publications.json”)`, exported in `collections`.
-- `src/content/publications/publications.json`: a single JSON array; each object is a publication.
-- `src/lib/getPublications.ts`: single point of entry (same pattern as `getUser.ts`). Uses `getCollection(“publications”)`, returns only `entry.data` sorted by year in descending order, and exports the `Publication` type.
-- `src/components/Publications.astro`: receives `publications: Publication[]` via props. If the array is empty, it displays “No publications are available yet.” (no error is thrown).
-- `publications` is removed from `userCollection` and `profile.json`.
+- `src/lib/getPublications.ts`: single entry point. Throws if empty, derives `year` and `href` (DOI first, else `url`), sorts by `date` desc then `id` desc.
+- `src/components/Publications.astro`: list, DOI/URL button, "Citar" button and shared citations `<dialog>`.
+- `src/pages/api/citations/[id].json.ts`: static endpoint, one citations JSON per publication.
 
 **Schema (Zod)**
-- `id`: `pub-YYYY-NNNNN`, manually assigned, unique, and stable.
-- `year`, `title`, `journal`: required.
-- `authors[]`: `{ name, isMe }`. `isMe: true` only for “Fernando Martín-Rivera” (validated with `refine`) and displayed in bold with `<b>`, without `set:html` (XSS rule, NFR 3).
-- `doi` (validated with a regular expression) or `url` when there is no DOI. The component links to `https://doi.org/{doi}` or to `url`.
--  `abstract` and `image`: optional (2 entries use them; abstract is placeholder text). Pending: `type` (article/conference).
+- `id`: `pub-YYYY-NNNNN`, unique and stable. `date`: `YYYY-MM`, not in the future.
+- `authors[]`: `isMe` only for names in `MY_NAMES` (accentless variants accepted: the name is kept as each journal published it). Bold with `<b>`, never `set:html`.
+- `doi` or `url` (when there is no DOI).
+- `citations`: `apa` required; `vancouver`, `bibtex`, `ris` optional. All reject mojibake; BibTeX and RIS have format checks. Stored pre-formatted, as obtained from the DOI.
 
-**Why a Separate  from `user` Collection**
-1. **Migration to NestJS (Option B):** Each JSON object corresponds to a row in a future `publications` table related to `users`. During migration, only the contents of `getPublications.ts` change (from `getCollection` to `fetch` from the API); pages and components remain unchanged.
-2. **Input validation:** Zod validates each publication separately, and the error indicates its `id`. Within `user`, a failure in a single publication would invalidate the entire profile—and with it, all pages (`BaseLayout` calls `getUser()`).
-3. **Separation of concerns:** `profile.json` remains small and stable (personal data). Posts grow (58 today) without affecting the profile.
-4. **Data scalability (NFR 2):** Independent collections allow for pagination, filtering, or sorting of posts without loading the profile, and in a multi-tenant setup, each teacher will have N posts, not an embedded array.
-5. **Performance:** No impact on Lighthouse scores; everything is resolved during the build, and the page remains static HTML.
+**Key decisions**
+- Separate collection: each object = future row of a `publications` table; on migration to NestJS only `getPublications.ts` changes.
+- Rule: the schema holds what is stored; `getPublications` holds what is derived.
+- `file()` over `glob()`: easiest to maintain; `glob()` reserved for a future CMS. A duplicate `id` only warns and loses an entry: check ids when adding publications.
 
-**Why `file()` and not `glob()` (loader in `src/content.config.ts`)*
-- `file()`: a single JSON file with N entries, each with its own `id`. This is the easiest to maintain.
-- `glob()` (one file per publication) is reserved for when a CMS (Decap) is in use.
-- Caution: With `file()`, a duplicate `id` only triggers a warning, and an entry is lost; check the IDs when adding publications.
-- Do not use `getEntry(‘publications’, ‘publications’)`: With `file()`, the file itself is not an entry; the entries are the objects in the array.
+### Citations modal (decision of October 6, 2026)
 
+"Citar" opens one shared native `<dialog>` with APA, Vancouver, BibTeX and RIS, each with a "Copiar" button (copy & paste only, no download).
+
+**Static endpoint `src/pages/api/citations/[id].json.ts`**
+- In `src/pages` because only files there become URLs (`src/content` is not shipped).
+- `getStaticPaths()` + `getPublications()` → one `dist/api/citations/{id}.json` per publication. No SSR.
+- `api/` mirrors the future NestJS route `GET /publications/:id/citations`; on migration only the fetch URL changes.
+
+**Runtime flow**
+1. Build: list HTML without citations + one citations JSON per publication (keeps the page light).
+2. "Citar" → `showModal()` → `fetch` of that publication's JSON (cached per id) → rendered with `textContent` (XSS rule).
+3. "Copiar" → `navigator.clipboard.writeText()` (needs https or localhost) → "¡Copiado!" + `role="status"` for screen readers.
 
 ### Architectural decision
 

@@ -14,7 +14,7 @@ const { socials, ids, showLabels = false } = Astro.props;
 
 const filtered = socials.filter((social) => ids.includes(social.id));
 
-const localIcons = ['researchgate', 'google-scholar']; // iconos propios en src/icons/, no del paquete MDI
+const localIcons = ['researchgate', 'google-scholar', 'orcid']; // iconos propios en src/icons/, no del paquete MDI
 ---
 
 <div class={showLabels ? "flex flex-col gap-3 w-full mt-4" : "flex gap-3 justify-center mt-4"}>
