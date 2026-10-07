@@ -5,34 +5,34 @@ import  SociaLinksIcons  from '../components/SociaLinksIcons.astro';
 import { Icon } from 'astro-icon/components';
 
 export interface Props{
-    user: CollectionEntry<'user'>['data']; //tipado de la data del usuario
+    user: CollectionEntry<'user'>['data']; //tipado de la data del usuario{ label: 'INICIO', href: '/' }, //lleva a pagina inicial
 }
 
 const {user} = Astro.props; 
 
 const nav = [
-  { label: 'INICIO', href: '/' }, //lleva a pagina inicial
-  { label: 'Acerca de mí', href: 'bio' },
-  { label: 'Docencia', href: 'teaching' },
-  { label: 'Publicaciones', href: 'publications' },
-  { label: 'Investigación', href: 'research' },
+  
+  { label: 'ACERCA DE MÍ', href: 'bio' },
+  { label: 'DOCENCIA', href: 'teaching' },
+  { label: 'INVESTIGACIÓN', href: 'research' },
+  { label: 'PUBLICACIONES', href: 'publications' },
 ];
 ---
 
 
-<!-- responsive: botón visible solo en < lg;  a la derecha para no tapar el nombre y desplegar SideBar -->
+<!-- botónHamburguesa visible solo en pantallas pequeñas <md:hidden > para desplegar sideBar y a la derecha para no tapar backButton -->
 <button
   id="sidebar-toggle"
   type="button"
   class="md:hidden fixed top-4 right-4 z-50 flex items-center justify-center
          w-10 h-10 rounded-full bg-slate-800 text-white shadow-md"
-  h-dvh overscroll-contain 
-  aria-controls="mySidenav"
-  aria-expanded="false"
-  aria-label="Abrir menú"
->
+          aria-controls="mySidenav"          
+          aria-expanded="false"
+          aria-label="Abrir menú">
   <Icon name="mdi:menu" class="w-6 h-6" />
 </button>
+
+  
 
 <!-- responsive: fondo oscuro solo en móvil; oculto hasta que el JS abra el menú -->
 <div id="sidebar-overlay" 
@@ -44,7 +44,19 @@ const nav = [
      -translate-x-full transition-transform duration-300 ease-out
       md:translate-x-0 
      bg-linear-to-r from-[#B0E0E6] to-[#E4F5F7] 
-     overflow-y-auto px-8 py-10 lg:p-8 flex flex-col gap-6"> <!-- estilo global del sidebar --> <!-- lg:translate-x-0 responsive: en móvil fuera de pantalla hasta que el JS lo abra; desde lg siempre visible -->
+     overflow-y-auto px-8 py-10 lg:p-8 flex flex-col gap-6"> <!-- estilo global del sidebar --> <!-- md:translate-x-0  responsive: en móvil fuera de pantalla hasta que el JS lo abra; desde lg siempre visible -->
+
+<!-- backButton<span>Volver al inicio</span> -->
+  <!-- responsive: pill compacta en móvil; mismo tamaño desde md, alineada a la izquierda -->
+  <a
+    href="/"
+    class="self-start inline-flex items-center gap-1 py-2 px-2 rounded-full
+           bg-white text-slate-600 font-semibold shadow-sm
+           hover:scale-[1.05] hover:shadow-lg transition-transform"
+  >
+    <Icon name="mdi:arrow-left-thick" class="w-6 h-6 shrink-0" aria-hidden="true" />
+    
+  </a>
 
  <!-- bloque 1 perfil  -->
    <section class="flex items-start gap-5 pb-2 border-b-3 border-white/40">
@@ -70,13 +82,13 @@ const nav = [
          <!-- bloque 2  Navegación -->
     <nav class="flex flex-col gap-2 pb-6 border-b-3 border-white/40">
          {nav.map((item) => (
-            <a href={item.href} class="text-slate-600 hover:text-white">{item.label}</a>
+            <a href={item.href} class="text-slate-600 font-semibold hover:text-white">{item.label}</a>
             ))}
     </nav>
 <!-- bloque 3   rrss -->
-         <div class="flex flex-col gap-2 items-start" >
+         <div class="flex flex-col gap-2  items-start" >
             <SociaLinksIcons socials={user.links} ids={[ 'rg_link', 'email_link','gs_link', 'cv_link','orcid_link']}
-            showLabels />
+             showLabels/>
 
          </div>
 
@@ -118,9 +130,5 @@ const nav = [
       //a.addEventListener('click', () => setOpen(false)));
   }
 </script>
-          
-  
-     
-   
-
+      
 </aside>

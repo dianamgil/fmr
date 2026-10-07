@@ -17,7 +17,7 @@ const filtered = socials.filter((social) => ids.includes(social.id));
 const localIcons = ['researchgate', 'google-scholar', 'orcid']; // iconos propios en src/icons/, no del paquete MDI
 ---
 
-<div class={showLabels ? "flex flex-col gap-3 w-full mt-4" : "flex gap-3 justify-center mt-4"}>
+<div class={showLabels ? "flex flex-col gap-2 w-full mt-4" : "flex gap-3 justify-center mt-4"}>
   {filtered.map((social) => {
     const isEmail = social.icon === 'email';
     const href = isEmail
@@ -30,7 +30,7 @@ const localIcons = ['researchgate', 'google-scholar', 'orcid']; // iconos propio
         href={href}
         target={isEmail ? undefined : '_blank'}
         rel={isEmail ? undefined : 'noopener noreferrer'}
-        class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-full bg-white text-slate-700 font-semibold shadow-sm hover:scale-[1.03] hover:shadow-lg"
+        class="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-full bg-white text-slate-700 shadow-sm hover:scale-[1.03] hover:shadow-lg"
       >
         <Icon name={iconName} class="w-5 h-5 shrink-0" />
         <span>{social.name}</span>
