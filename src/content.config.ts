@@ -34,7 +34,7 @@ const userCollection = defineCollection({
     university: z.string(),
     universityLink: z.string().url(), //valida que sea un URL válido
     avatar: z.string(),
-    bio: z.string() .max(150), // límite funcional: bio del ProfileHeader no puede superar 50 caracteres
+    shortBio: z.string().max(150), // límite funcional: bio del ProfileHeader no puede superar 150 caracteres
     longBio: z.array(z.string().trim().min(1)).min(1), // bio larga: un string por párrafo, sin párrafos vacíos
     email: z.string().email(),
     cv: z.string(),
@@ -54,6 +54,7 @@ const userCollection = defineCollection({
             },),
         subject: z.string().trim(),
         role: z.string().trim().optional(),
+        category: z.enum(['grado', 'postgrado']),
         university: z.string().trim() 
       })
     ),

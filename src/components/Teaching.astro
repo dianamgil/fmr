@@ -7,38 +7,55 @@ export interface Props{
 }
 
 const { user } = Astro.props; //recoger os datos (props) que han llegado de .json
+const grado = user.teaching.filter((job) => job.category === 'grado');
+const postgrado = user.teaching.filter((job) => job.category === 'postgrado');
 
+// calcula qué texto de periodo mostrar: "2019-2023" → "2019-2023"; "2019-" → "2019-present"
+const formatPeriod = (period: string) => {
+  const [startYear, endYear] = period.split('-'); // separa el string del periodo
+  return `${startYear}-${endYear || 'present'}`;// si no hay endYear, muestra "present"
+};
 ---
 
 <!--responsive: tamaño de texto  lista en columna con separación -->
 
 <section class="w-full max-w-3xl">  
   <h1 class="text-2xl md:text-3xl font-bold mb-6">Docencia</h1> 
- <p class="text-slate-700 leading-relaxed mb-10"> En esta sección se recoge mi experiencia y actividad docente, incluyendo las asignaturas, cursos y actividades formativas en las que he participado</p>
+ <p class="text-slate-700 leading-relaxed mb-10"> En esta sección se recoge mi experiencia como profesor universitario.</p>
 
 
-  <ul class="flex flex-col gap-6"> 
-    {user.teaching.map((job) => { //itera cada asignatura
+  <!-- responsive: subtítulo más grande desde md; cada item en columna en móvil, fila desde sm -->
+  {grado.length > 0 && (
+    <>
+      <h2 class="text-xl md:text-2xl font-semibold mb-4">Grado</h2>
+      <ul class="flex flex-col gap-6 mb-10">
+        {grado.map((job) => (
+          <li class="flex flex-col sm:flex-row sm:gap-3">
+            <span class="text-sm text-slate-400 sm:w-24 sm:shrink-0">{formatPeriod(job.period)}</span>
+            <div>
+              <p class="font-semibold text-slate-800">{job.subject}</p>
+              <p class="text-sm text-slate-400">{job.role && `${job.role} · `}{job.university}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
 
-          const hasDash = job.period.includes('-'); // detecta si es rango o año suelto 
-      const [startYear, endYear] = job.period.split('-'); // [At] separa el string del periodo 
-      const displayPeriod = !hasDash
-        ? startYear
-        : endYear
-          ? `${startYear}-${endYear}`
-          : `${startYear}-present`; //calcula qué texto de periodo mostrar
-      return (
-        // [tw] responsive: columna en móvil, fila desde sm 
-        <li class="flex flex-col sm:flex-row sm:gap-3"> 
-          <span class="text-sm text-slate-400 sm:w-24 sm:shrink-0">{displayPeriod}</span> 
-          <div>
-            <p class="font-semibold text-slate-800">{job.subject}</p> 
-             <p class="text-sm text-slate-400"> 
-              {job.role && `${job.role} · `}{job.university}
-              </p>
-          </div>
-        </li>
-      );
-    })}
-  </ul>
+  {postgrado.length > 0 && (
+    <>
+      <h2 class="text-xl md:text-2xl font-semibold mb-4">Postgrado</h2>
+      <ul class="flex flex-col gap-6">
+        {postgrado.map((job) => (
+          <li class="flex flex-col sm:flex-row sm:gap-3">
+            <span class="text-sm text-slate-400 sm:w-24 sm:shrink-0">{formatPeriod(job.period)}</span>
+            <div>
+              <p class="font-semibold text-slate-800">{job.subject}</p>
+              <p class="text-sm text-slate-400">{job.role && `${job.role} · `}{job.university}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
 </section> 

@@ -1,10 +1,10 @@
 {
   "name": "Fernando Martin Rivera, PhD",
-  "role": "Departamento de Educación Física y Deporte",
+  "role": "Facultad de Ciencias de la Actividad Física y el Deporte",
   "university": "Universidad de Valencia",
   "universityLink": "https://www.uv.es/uvweb/grado-ciencias-actividad-fisica-deporte/es/grado-ciencias-actividad-fisica-del-deporte-1285935083794.html",
   "avatar": "/images/avatar_fmr.webp",
-  "bio": "Profesor Titular de Sistematica del Movimiento y Poblaciones especiales. Investigador en entrenamiento de fuerza.",
+  "shortBio": "Profesor Titular de Sistematica del Movimiento e Investigador.",
   "longBio": [
     "Tengo un perfil interdisciplinar que combina la Docencia universitaria e Investigación desde el año 2011 con la gestión deportiva, el entrenamiento de fuerza y la tecnología aplicada.  ",
     "Actualmente desarrollo mi actividad en la **Universitat de València, en la Facultat de Ciencias de la Actividad Física y el Deporte**, donde soy profesor titular desde 2025. Mi experiencia docente se extiende, además, a la formación permanente del profesorado.",
@@ -12,7 +12,7 @@
     "La investigación constituye uno de los elementos más destacados de mi perfil profesional. Mi línea de trabajo investigador se caracteriza por un enfoque aplicado y experimental. Una parte importante de mi investigación se centra en analizar la **validez, la fiabilidad y la utilidad de instrumentos tecnológicos** destinados a medir el movimiento, la velocidad, la fuerza y la activación muscular durante la práctica del ejercicio físico.",
     "La evolución de mi formación hacia la estadística, Python, la inteligencia artificial, el machine learning y la ingeniería de datos refuerza mi capacidad para participar en proyectos de investigación multidisciplinares. Dirigiendo mi trayectoria hacia iniciativas que conecten las ciencias del deporte con la ciencia de datos, la sensorización, la inteligencia artificial, la salud digital y el envejecimiento activo."
   ],
-  "skills":["Sport Biomechanics", "Matlab","Data Science","R","Markdown","Peer Review","Python", "NoteBookLM","Numpy, Pandas, Scikit-Learn", "Applied AI", "Sport Biomechanics"],
+  "skills":["Sport Biomechanics", "Matlab","Data Science","R","Markdown","Peer Review","Python", "NoteBookLM","Numpy, Pandas, Scikit-Learn", "Applied AI", "Sport Biomechanics","Supervisor IRA (Seguridad Nuclear)"],
   "email": "fernando.martin-rivera@uv.es",
   "cv": "/documents/cv_fmartinr.pdf",
   
@@ -28,18 +28,24 @@
   ],
 
   "teaching":[
-    {"subject": "Sistemática del movimiento","university": "Universitat de València","role": "Coordinador","period": "2019-"},
-    {"subject": "Ejercicio Físico para Poblaciones con Necesidades Especiales","university": "Universitat de València","role": "", "period": "2023-2025"},
-    {"subject": "Supervisor IRA FCAFE (Consejo de Seguridad Nuclear)","university": "Universitat de València", "role": "","period": "2023-"},
-    {"subject": "Métodos y protocolos de readaptación en el deporte - MÁSTER", "university": "Universidad Católica de València", "role": "","period": "2020-2025"},
-    {"subject": "Entrenamiento Deportivo: Preparación Física","university": "Universitat de València", "role": "","period": "2019-2023"},
-    {"subject": "Diseño y planificación del entrenamiento personal - MÁSTER", "university": "Universidad de Cádiz", "role": "","period": "2019-2025"},
-    {"subject": "Trabajo fin de grado (TFG)","university": "Universitat de València","role": "Tutor","period": "2014-"},
-    {"subject": "Prácticas externas", "university": "Universitat de València","role": "Tutor", "period": "2014-"},
-    {"subject": "Planificación y evaluación de la actividad física y el deporte","university": "Universitat de València","role": "Coordinador","period": "2011-2020"},
-    {"subject": "High Intensity Interval Training y Trabajo hipopresivo en el deportista -MÁSTER","university": "Universidad Cardenal Herrera CEU Sevilla", "role": "","period": "2015-2018"},
-    {"subject": "Readaptación del deportista lesionado - MÁSTER","university": "Universidad Católica de València","role": "","period": "2015-2018"},
-    {"subject": "Nuevas tendencias en el entrenamiento físico personalizado -Curso","university": "Universitat de València","role": "","period": "2012-2013"}
-  
+     {"subject": "Sistemática del movimiento","university": "Universitat de València","role": "Coordinador","category":"grado","period": "2019-"},
+      {"subject": "Ejercicio físico para poblaciones con necesidades especiales","university": "Universitat de València","category":"grado", "period": "2023-2025"},
+      {"subject": "Entrenamiento deportivo: Preparación física","university": "Universitat de València","role": "Coordinador","category":"grado","period": "2019-2023"},
+      {"subject": "Trabajo fin de grado (TFG)","university": "Universitat de València","role": "Tutor","period": "2014-","category":"grado"},
+      {"subject": "Prácticas externas", "university": "Universitat de València","role": "Tutor", "period": "2014-","category":"grado"},
+      {"subject": "Planificación y evaluación de la actividad física y el deporte","university": "Universitat de València","role": "Coordinador","category":"grado","period": "2011-2020"},
+      {"subject": "Principios y modalidades de intervención en actividad física especial y adaptada","university": "Universitat de València","category":"grado","period": "2012-2013"},
+      {"subject": "Recreación físico-Deportiva","university": "Universitat de València","category":"grado","period": "2012-2013"},
+      {"subject": "Juego educativo e iniciación Deportiva","university": "Universitat de València","category":"grado","period": "2011-2013"},
+      
+   
+      {"subject": "Métodos y protocolos de readaptación en el deporte", "university": "Universidad Católica de València", "category":"postgrado","period": "2020-2025"},
+      {"subject": "Diseño y planificación del entrenamiento personal", "university": "Universidad de Cádiz", "category":"postgrado" ,"period": "2019-2025"},
+      {"subject": "Entrenamiento de la fuerza basada en la velocidad y su aplicación en la readaptación de lesiones", "university": "Universidad Isabel I de Castilla", "category":"postgrado" ,"period": "2017-2017"},
+      {"subject": "Readaptación del deportista lesionado","university": "Universidad Católica de València","category":"postgrado","period": "2015-2018"},
+      {"subject": "High Intensity Interval Training y Trabajo hipopresivo en el deportista","university": "Universidad Cardenal Herrera CEU Sevilla", "category":"postgrado","period": "2015-2018"},
+      {"subject": "Nuevas tendencias en el entrenamiento físico personalizado","university": "Universitat de València","category":"postgrado","period": "2012-2013"},
+      {"subject": "Mantenimiento en instalaciones Deportivas","university": "Universidad Pablo de Olavide","category":"postgrado","period": "2011-2014"}
   ]
+    
 }

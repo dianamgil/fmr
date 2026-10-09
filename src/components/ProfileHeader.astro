@@ -2,7 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 
 export interface Props {
-  user: Pick<CollectionEntry<'user'>['data'], 'name' | 'role' | 'university' | 'avatar' | 'bio' | 'universityLink'>; // solo los campos que se usan en este componente
+  user: Pick<CollectionEntry<'user'>['data'], 'name' | 'role' | 'university' | 'avatar' | 'shortBio' | 'universityLink'>; // solo los campos que se usan en este componente
 }
 const { user } = Astro.props;
 ---
@@ -26,5 +26,5 @@ const { user } = Astro.props;
             {user.university}
   </a>
   <p class="text-sm md:text-base
-   text-slate-600 mt-4 px-2 max-w-md lg:max-w-lg">{user.bio}</p> <!-- responsive: el ancho máximo del bio crece en desktop -->
+   text-slate-600 mt-4 px-2 max-w-md lg:max-w-lg">{user.shortBio}</p> <!-- responsive: el ancho máximo del bio crece en desktop -->
 </header>
