@@ -11,25 +11,25 @@ import { Icon } from 'astro-icon/components';
   <p class="text-slate-700 leading-relaxed mb-10">  Lista de Proyectos de I+D+i obtenidos en convocatorias públicas competitivas.</p>
 
  <ol
-  class="relative space-y-8 before:absolute before:top-0 before:left-1/2 before:h-full before:w-0.5 before:-translate-x-1/2 before:rounded-full before:bg-gray-200">
+  class="relative space-y-8 before:absolute before:top-0 before:left-1.5 md:before:left-1/2 before:h-full before:w-0.5 before:-translate-x-1/2 before:rounded-full before:bg-gray-200">
      {projects.map((project) => (
-      <li class="group relative grid grid-cols-2 odd:-me-3 even:-ms-3">
+      <li class="group relative md:grid md:grid-cols-2 md:odd:-me-3 md:even:-ms-3">
          <div
-      class="relative flex items-start gap-4 group-odd:flex-row-reverse group-odd:text-right group-even:order-last"
+      class="relative flex items-start gap-4 md:group-odd:flex-row-reverse md:group-odd:text-right md:group-even:order-last"
     >
          <span class="size-3 shrink-0 rounded-full bg-blue-600"></span>
         <div class="-mt-2">
         <time class="text-xs/none font-medium text-gray-700">{project.start} - {project.end ?? 'present'}</time>
 
           <!-- responsive: título algo mayor desde md -->
-          <h2 class="text-lg font-bold text-gray-700">{project.title}</h2>
+          <h2 class="text-base md:text-lg font-bold text-gray-700">{project.title}</h2>
           <p class="mt-0.5 text-sm text-gray-700">
             {project.role}{project.participants && ` · ${project.participants} participantes`}
           </p>
           <p class="text-sm text-slate-400">{project.funder} · {project.code}</p>
            </div>
           </div>
-        <div aria-hidden="true"></div>  {/*  separador decorativo efecto de alternancia del timeline, oculto a lectores de pantalla */}
+        <div class="hidden md:block" aria-hidden="true"></div>  {/*  separador decorativo efecto de alternancia del timeline, oculto a lectores de pantalla */}
       </li>
     ))}
 </ol>

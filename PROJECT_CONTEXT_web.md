@@ -56,6 +56,13 @@ Deferred scaling options (documented, not started):
   - Contains the professor's profile data.
   - Currently contains a single profile entry with id `profile`.
  - Real client data is present in this file.
+    ### `teaching`: categoría grado / postgrado
+    - Nuevo campo obligatorio en cada entrada de `user.teaching`: `category: z.enum(['grado', 'postgrado'])`.
+    - Obligatorio (no `.optional()`): una asignatura sin categoría no saldría en ninguna lista, así que Zod rompe el build en vez de ocultarla.
+    - `z.enum` en vez de `z.string()`: valores cerrados que mapean a un enum de columna en la BD futura (NestJS).
+    - Se quitó el sufijo "- MÁSTER" de `subject` (ahora lo expresa `category`) y los `"role": ""` vacíos.
+    - `bio` renombrado a `shortBio` (`z.string().max(150)`), pareja explícita con `longBio`. `ProfileHeader.astro` actualiza su `Pick<…>`.
+
 
 `src/lib/getUser.ts`
   - Provides a centralized access point for the user profile data.
@@ -172,6 +179,23 @@ SociaLinksIcons.astro — reemplaza a SocialIcons.astro (borrado). Props { socia
 - Sigue usando `localIcons = ['researchgate', 'google-scholar']` para resolver íconos SVG locales (`src/icons/`) en vez de `mdi:` cuando corresponde — mismo patrón que `LinkButton.astro`.
 
 LinkButton.astro — Props { title: string; url: string }. Renders a full-width pill button; detects external links via url.startsWith('http') to set target="_blank" rel="noopener noreferrer".
+
+## Teaching.astro
+- Separa `user.teaching` en dos listas en el frontmatter (`grado`, `postgrado`) con `.filter()` por `category`.
+- Cada lista se pinta bajo su `<h2>` ("Grado", "Postgrado") y solo si tiene elementos.
+- `formatPeriod(period)` en el frontmatter: `"2019-2023"` → `"2019-2023"`, `"2019-"` → `"2019-present"`. Sustituye la lógica inline del `.map()`.
+- Sin archivos nuevos: el filtrado es presentación, no acceso a datos, por eso no va a `src/lib/`.
+
+### Avatar (ProfileHeader y Sidebar)
+- `rounded-2xl` en lugar de `rounded-full` en ambos componentes, por coherencia visual.
+- ProfileHeader: `w-28 h-28 md:w-32 md:h-32 object-contain bg-white` (foto completa, sin recorte).
+- Sidebar: `w-40 h-40 object-cover rounded-2xl`.
+
+### Research.astro: timeline con línea central
+- La lista de proyectos pasa a `<ol>` con una línea vertical central hecha con el pseudo-elemento `before:` (`left-1/2 w-0.5 bg-gray-200`), sin nodos extra en el DOM.
+- Cada `<li>` es `grid grid-cols-2` y alterna lado con `odd:`/`even:`; punto azul `size-3 rounded-full bg-blue-600`.
+- Fecha en `<time>`; la celda vacía de la alternancia lleva `aria-hidden="true"`.
+- Solo CSS de Tailwind, cero JS (sin coste en Lighthouse).
 
 7. Pages (src/pages/)
 index.astro — the only page built so far (the bio.link-style landing):
