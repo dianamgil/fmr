@@ -113,7 +113,7 @@ const { publications } = Astro.props;
     cache.set(id, data);
     return data;
   }
-//
+
   function render(citations: Citations | null) {
     dialog.querySelectorAll<HTMLElement>('[data-format]').forEach((block) => {
       const text = citations?.[block.dataset.format as keyof Citations];
