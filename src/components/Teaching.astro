@@ -13,7 +13,7 @@ const postgrado = user.teaching.filter((job) => job.category === 'postgrado');
 // calcula qué texto de periodo mostrar: "2019-2023" → "2019-2023"; "2019-" → "2019-present"
 const formatPeriod = (period: string) => {
   const [startYear, endYear] = period.split('-'); // separa el string del periodo
-  return `${startYear}-${endYear || 'present'}`;// si no hay endYear, muestra "present"
+  return `${startYear}-${endYear || 'present'}`;// si no hay endYear, muestra "present|
 };
 ---
 
