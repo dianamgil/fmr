@@ -18,6 +18,8 @@ const { title } = Astro.props; //end point de cual componente se renderiza (bio,
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title> <!-- -->
+    <meta name="description" content={user.shortBio} /> // descripción para SEO
+
   </head>
   <body class="min-h-screen bg-white text-slate-800"> 
       <slot name="sidebar" /> <!-- [At] -->

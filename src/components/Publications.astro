@@ -38,8 +38,8 @@ const { publications } = Astro.props;
               <Icon name="mdi:open-in-new" class="h-4 w-4" aria-hidden="true" />
             </a>
 
-             //responsive: en móvil puede bajar de línea junto al botón DOI 
-                // aqui se guarda el id de publciación para que el modal pueda cargar la cita correspondiente-->
+              //responsive: en móvil puede bajar de línea junto al botón DOI 
+                // aqui se guarda el id de publciación para que el modal pueda cargar la cita correspondiente
           <button type="button" data-cite-id={pub.id}
                   aria-haspopup="dialog" aria-controls="cite-dialog"
                   class="m-5 inline-flex items-center gap-1.5 rounded border border-slate-300 px-4 py-2 text-sm hover:bg-slate-50">

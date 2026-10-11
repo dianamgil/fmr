@@ -267,4 +267,4 @@ Botón: <button id="sidebar-toggle" type="button"> con aria-controls="mySidenav"
 Overlay: <div id="sidebar-overlay"> fixed inset-0 bg-black/40, hidden md:hidden; el JS alterna hidden.
 Capas z-index: overlay z-30 < sidebar z-40 < botón z-50. Sin z-40 en el sidebar el overlay lo tapaba y bloqueaba los clics (bug encontrado y corregido).
 
-Script (<script> de Astro, módulo): usa addEventListener, nunca onclick="..." inline — las funciones de un módulo no son globales (ReferenceError). Una única función setOpen(open) actualiza clases y atributos ARIA. Cierra con: clic en el botón, clic en el overlay, tecla Escape, clic en un enlace del sidebar.
+Script (<script> de Astro, módulo): usa addEventListener, nunca onclick="..." inline — las funciones de un módulo no son globales (ReferenceError). Una única función setOpen(open) actualiza clases y atributos ARIA. Cierra con: clic en el botón, clic en el overlay, tecla Escape, clic en un enlace del sidebar. C:\Users\d_mgi\Desktop\Portafolio_DMG\FMR_web\src\fmr\package-lock.json
