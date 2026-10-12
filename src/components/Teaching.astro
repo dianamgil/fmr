@@ -1,9 +1,9 @@
 ---
 
-import type {CollectionEntry} from 'astro:content'; //para tipar el array de links que se usaran
+import type { User } from '../lib/getUser';
 
 export interface Props{
-    user  : Pick<CollectionEntry<'user'>['data'],'teaching'>; //tipado del los datos del .json solo la sección "teaching"
+     user: Pick<User, 'teaching'>; //tipado del los datos del .json solo la sección "teaching"
 }
 
 const { user } = Astro.props; //recoger os datos (props) que han llegado de .json

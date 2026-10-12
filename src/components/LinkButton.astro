@@ -1,8 +1,8 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import type { LinkItem } from '../lib/getUser';
 import { Icon } from 'astro-icon/components';
 
-type LinkItem = CollectionEntry<'user'>['data']['links'][number]; // misma forma que usa LinkButton.astro; no es exclusivo de "redes sociales", es cualquier entrada de links
+
 
 export interface Props {
   socials: LinkItem[]; // recibe el array COMPLETO de links a propósito: la selección de cuáles mostrar vive DENTRO de este componente, no en la página que lo llama

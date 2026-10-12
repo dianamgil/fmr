@@ -1,8 +1,8 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import type { User } from '../lib/getUser';
 
 export interface Props {
-  user: Pick<CollectionEntry<'user'>['data'], 'name' | 'role' | 'university' | 'avatar' | 'shortBio' | 'universityLink'>; // solo los campos que se usan en este componente
+  user: Pick<User, 'name' | 'role' | 'university' | 'avatar' | 'shortBio' | 'universityLink'>; // solo los campos que se usan en este componente
 }
 const { user } = Astro.props;
 ---
@@ -20,11 +20,10 @@ const { user } = Astro.props;
   /> <!--loading y fetchpriority= fuerzan carga inmediata y prioritaria del avatar  -->
 
 
-    <h1 class="text-xl md:text-2xl lg:text-3xl font-bold mt-4">{user.name}</h1> 
-  <p class="text-sm md:text-base text-slate-500 font-medium">{user.role}</p> 
+    <h1 class="text-2xl md:text-2xl lg:text-3xl font-bold mt-4">{user.name}</h1> 
+  <h2 class="text-sm md:text-base text-slate-600 font-L">{user.role}</h2> 
   <a href={user.universityLink} target="_blank" class="text-slate-600 hover:text-white">
             {user.university}
   </a>
-  <p class="text-sm md:text-base
-   text-slate-600 mt-4 px-2 max-w-md lg:max-w-lg">{user.shortBio}</p> <!-- responsive: el ancho máximo del bio crece en desktop -->
+
 </header>

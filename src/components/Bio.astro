@@ -1,10 +1,11 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+
+import type { User } from '../lib/getUser';
 import { Icon } from 'astro-icon/components';
 import { boldSegments } from '../lib/boldSegments';
 
 export interface Props {
-  user: Pick<CollectionEntry<'user'>['data'], 'longBio' | 'skills'>; // tipado desde Zod: solo la bio larga
+  user: Pick<User, 'longBio' | 'skills'>; // tipo desde lib (derivado de Zod): solo bio larga y skills
 }
 
 const { user } = Astro.props;

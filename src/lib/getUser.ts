@@ -14,3 +14,7 @@ export async function getUser() {
   }
   return entry.data;
 }
+
+//SIN ESTE EL COMPONENTE NO PUEDE IMPORTAR EL TIPO User (que es el tipo del objeto devuelto por getUser)
+export type User = Awaited<ReturnType<typeof getUser>>;
+export type LinkItem = User['links'][number];
