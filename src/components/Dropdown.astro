@@ -14,31 +14,30 @@ export interface Props{
 
 ---
 
-<!--Boton about Me -->
-<details id = "menu" class="group relative w-full md:w-auto">
+<!--Boton perfilmd:w-auto -->
+<details id = "menu" class="group w-full ">
   <summary class="list-none [&::-webkit-details-marker]:hidden
             flex items-center justify-center 
             cursor-pointer 
-            w-full py-3 px-4 
+            w-full py-3 px-4 gap-2 
             rounded-full bg-white
             text-slate-800 font-medium
-            shadow-md hover:shadow-lg">
-      <Icon name="mdi:arrow-down-drop" 
+            shadow-md hover:shadow-lg hover:scale-[1.07]">
+      <Icon name="mdi:account" class="w-8 h-7" />
+      <span>Perfil </span>
+     <Icon name="mdi:arrow-down-drop" 
             class="w-8 h-7 transition-transform group-open:rotate-180" />
-      <span>Perfil Profesional</span>
-     
   </summary>
 
-  <div class="mt-2 w-full flex flex-col gap-2
-        md:absolute md:top-0 md:left-full 
-        md:mt-0 md:ml-2 md:w-48"> <!-- responsive: en móvil se despliega debajo (flujo normal, sin riesgo de desbordar); desde md se despliega al lado -->
+ <div class="mt-3 w-full px-6 flex flex-col gap-2">  <!-- responsive: en móvil se despliega debajo (flujo normal, sin riesgo de desbordar); desde md se despliega al lado -->
     {links.map((link) => (
       <a href={link.href} 
-      class="block text-center py-2 px-4 
+      class="block text-center py-2 px-6 
             rounded-full bg-slate-100
             text-slate-700 hover:bg-slate-200
-            shadow-sm"
-        >
+            hover:border-slate-800 hover:scale-[1.07] hover:shadow-lg
+            shadow-lg"
+        > 
         {link.text}
       </a>
     ))}

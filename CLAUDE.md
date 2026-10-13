@@ -48,7 +48,7 @@ All technical recommendations must strictly align with the project choices:
 
 
 
-## Development
+## 5 Development
  
 When starting the dev server, use background mode:
 
@@ -58,7 +58,7 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
-## Documentation
+## 6 Documentation
 
 Full documentation: https://docs.astro.build
 
@@ -71,7 +71,7 @@ Consult these guides before working on related tasks:
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
 
-# Project Instructions
+# REMEMBER:
 
 ## Context
 
