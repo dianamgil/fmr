@@ -26,16 +26,9 @@ const { publications } = Astro.props;
           <!-- responsive: los autores hacen salto de línea solos en móvil -->
            <div class="group m-3" data-authors>
             <p id={`authors-${pub.id}`} class="text-sm text-slate-600 md:text-base">
-              {pub.authors.map((a, i) => (
-                <>
-                  {a.collapsed && !pub.authors[i - 1]?.collapsed && (
-                    <span class="md:hidden group-data-expanded:hidden">, …</span>
-                  )}
-                  <span class={a.collapsed ? 'hidden md:inline group-data-expanded:inline' : undefined}>
-                    {i > 0 && ', '}{a.isMe ? <b>{a.name}</b> : a.name}
-                  </span>
-                </>
-              ))} 
+                {pub.authors.map((a, i) => (
+                <>{a.collapsed && !pub.authors[i - 1]?.collapsed && <span class="md:hidden group-data-expanded:hidden">, …</span>}<span class={a.collapsed ? 'hidden md:inline group-data-expanded:inline' : undefined}>{i > 0 && ', '}{a.isMe ? <b>{a.name}</b> : a.name}</span></>
+              ))}
             {pub.authors.some((a) => a.collapsed) && (
               <button type="button" data-authors-toggle aria-expanded="false" aria-controls={`authors-${pub.id}`}
                       class="m-1 text-sm text-slate-400 hover:text-slate-900 md:hidden">
@@ -176,7 +169,7 @@ const { publications } = Astro.props;
   });
 
 
-   // ── PASO 4 autores, ver todos / ver menos (solo móvil) ──
+   // ── PASO 4 autores, ver masc / ver menos (solo móvil) ──
   document.querySelectorAll<HTMLButtonElement>('[data-authors-toggle]').forEach((btn) => {
     const label = btn.textContent!.trim();
     btn.addEventListener('click', () => {

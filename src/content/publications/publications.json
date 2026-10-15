@@ -1,4 +1,43 @@
 [
+   {
+    "id": "pub-2026-00058",
+    "date": "2026-10",
+    "title": "Blood Flow Restriction Training for Tendinopathy Rehabilitation: An Exploratory Review of Tendon Morphology and Functional Outcomes",
+    "authors": [
+      {
+        "name": "Ruba Albatayneh"
+      },
+      {
+        "name": "Yasser Alakhadar"
+      },
+      {
+        "name": "Aseel Aburub"
+      },
+      {
+        "name": "Angel Saez-Berlanga"
+      },
+      {
+        "name": "Darío Rodrigo-Mallorca"
+      },
+      {
+        "name": "Iván Chulvi-Medrano"
+      },
+      {
+        "name": "Fernando Martin-Rivera",
+        "isMe": true
+      }
+    ],
+    "journal": "Physical Activity and Health",
+    "doi": "10.5334/paah.590",
+    "abstract": "endinopathy is a prevalent degenerative condition characterized by collagen disorganization, pain, and impaired function. High-load resistance training (HL-RT) is the current standard for promoting tendon adaptation; however, it may not be feasible for all patients. Low-load blood flow restriction training (LL-BFRT) has emerged as a potential alternative that may allow exercise to be performed with lower mechanical loads. The objective was to explore the effects of LL-BFRT on tendon morphology and functional outcomes in individuals with tendinopathy and to identify common training parameters and limitations in the current literature. An exploratory review was conducted, with the study selection process reported using the PRISMA 2020 framework. Databases were searched (Jan 2020–May 2025) for studies assessing LL-BFRT in adult patients. Eligible study designs included randomized controlled trials, feasibility studies, case reports, and case series. Nine studies met the inclusion criteria: 4 randomized controlled trials (RCTs), 1 feasibility study, 1 case series, and 3 case reports. Improvements in pain, muscle strength, and patient-reported functional outcomes were reported across several tendinopathy types, including patellar, lateral elbow, rotator cuff, and gluteal tendinopathy. Ultrasound findings showed inconsistent changes in tendon morphology, with some studies reporting changes in tendon thickness or vascularity. Functional gains were observed even in the absence of morphological changes. Protocols commonly used low-load exercise performed 2–4 sessions per week, although occlusion pressure, exercise volume, and intervention duration varied across studies. No serious adverse events were reported. Heterogeneity in training parameters, small sample sizes, and lack of long-term follow-up limit generalizability. LL-BFRT may have potential for improving functional outcomes in tendinopathy rehabilitation, although the limited and heterogeneous evidence precludes firm conclusions regarding its clinical effectiveness and safety. Further high-quality RCTs with standardized protocols are needed to establish its clinical efficacy and characterize tendon-specific adaptations. Highlights Low-load blood flow restriction training (LL-BFRT) was associated with improvements in pain and functional outcomes across several studies in individuals with tendinopathy. Tendon morphological responses to LL-BFRT remain unclear, with limited and heterogeneous evidence across the included studies. LL-BFRT may represent a useful low-load rehabilitation approach when high mechanical loads are not well tolerated, although further high-quality research is required.",
+    "citations": {
+      "apa": "Albatayneh, R., Alakhadar, Y., Aburub, A., Saez-Berlanga, A., Rodrigo-Mallorca, D., Chulvi-Medrano, I., & Martin-Rivera, F. (2026). Blood Flow Restriction Training for Tendinopathy Rehabilitation: An Exploratory Review of Tendon Morphology and Functional Outcomes. Physical Activity and Health, 10(1), 183–194. https://doi.org/10.5334/paah.590",
+      "vancouver": "Albatayneh R, Alakhadar Y, Aburub A, Saez-Berlanga A, Rodrigo-Mallorca D, Chulvi-Medrano I, Martin-Rivera F. Blood Flow Restriction Training for Tendinopathy Rehabilitation: An Exploratory Review of Tendon Morphology and Functional Outcomes. Phys Act Health. 2026 Oct;10(1):183-194. doi: 10.5334/paah.590.",
+      "bibtex": "@article{Albatayneh_2026,\n  title={Blood Flow Restriction Training for Tendinopathy Rehabilitation: An Exploratory Review of Tendon Morphology and Functional Outcomes},\n  volume={10},\n  ISSN={2515-2270},\n  url={https://doi.org/10.5334/paah.590},\n  DOI={10.5334/paah.590},\n  number={1},\n  journal={Physical Activity and Health},\n  publisher={Ubiquity Press, Ltd.},\n  author={Albatayneh, Ruba and Alakhadar, Yasser and Aburub, Aseel and Saez-Berlanga, Angel and Rodrigo-Mallorca, Darío and Chulvi-Medrano, Iván and Martin-Rivera, Fernando},\n  year={2026},\n  month={October},\n  pages={183--194}\n}",
+      "ris": "TY  - JOUR\nTI  - Blood Flow Restriction Training for Tendinopathy Rehabilitation: An Exploratory Review of Tendon Morphology and Functional Outcomes\nJO  - Physical Activity and Health\nAU  - Albatayneh, Ruba\nAU  - Alakhadar, Yasser\nAU  - Aburub, Aseel\nAU  - Saez-Berlanga, Angel\nAU  - Rodrigo-Mallorca, Darío\nAU  - Chulvi-Medrano, Iván\nAU  - Martin-Rivera, Fernando\nPY  - 2026\nDA  - 2026/10/08\nPB  - Ubiquity Press, Ltd.\nUR  - https://doi.org/10.5334/paah.590\nDO  - 10.5334/paah.590\nVL  - 10\nIS  - 1\nSP  - 183\nEP  - 194\nSN  - 2515-2270\nER  -"
+}
+  },
+  
   {
     "id": "pub-2026-00057",
     "date": "2026-05",

@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 
 
 // Lista corta de autores en móvil: más de 8 → 4 primeros + último + autor de la web (isMe)
-const AUTHORS_MAX_FULL = 8;
+const AUTHORS_MAX_FULL =6;
 const AUTHORS_HEAD = 4;
 
 function markCollapsed<T extends { isMe: boolean }>(authors: T[]) {
