@@ -2,6 +2,20 @@
 import { getCollection } from 'astro:content';
 
 
+
+
+// Lista corta de autores en móvil: más de 8 → 4 primeros + último + autor de la web (isMe)
+const AUTHORS_MAX_FULL = 8;
+const AUTHORS_HEAD = 4;
+
+function markCollapsed<T extends { isMe: boolean }>(authors: T[]) {
+  const last = authors.length - 1;
+  return authors.map((a, i) => ({
+    ...a,
+    collapsed: authors.length > AUTHORS_MAX_FULL && i >= AUTHORS_HEAD && i !== last && !a.isMe,
+  }));
+}
+
 //--------------FUNCION PARA CENTRALIZAR EL ACCESO AL ARRAY DE LA  COLECCIÓN DE PUBLICACIONES (publications) Y SU DOCUMENTO (publications.json)----------------   
 
 export async function getPublications(limit?: number) {
@@ -12,7 +26,7 @@ export async function getPublications(limit?: number) {
 }
   return entries
     .map((entry) => ({                                                                  // recorre cada entrada y devuelve un objeto NUEVO por cada una
-      ...entry.data,                                                                
+      ...entry.data,  authors: markCollapsed(entry.data.authors),                                                                  
       year: Number(entry.data.date.slice(0, 4)),                                     // derivado: el componente sigue usando pub.year
       href: entry.data.doi ? `https://doi.org/${entry.data.doi}` : entry.data.url,   // enlace listo: DOI primero, url si no hay DOI
     }))
