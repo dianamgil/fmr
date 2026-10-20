@@ -1,6 +1,6 @@
-import { defineCollection, z } from 'astro:content'; // importa las funciones necesarias para definir colecciones de contenido y validación de esquemas con Zod
+import { defineCollection } from 'astro:content'; // importa las funciones necesarias para definir colecciones de contenido y validación de esquemas con Zod
 import { glob, file } from 'astro/loaders'; // importa el loader glob para buscar archivos con un patrón específico
-
+import {z} from 'astro/zod'; // importa la biblioteca Zod para validación de esquemas
 
 //------para validar nombre usuario en revistas   
 const MY_NAMES = [
