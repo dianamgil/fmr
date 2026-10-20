@@ -14,6 +14,8 @@ const MY_NAMES = [
 const DOI_REGEX = /^10\.\d{4,9}\/[-._;()/:a-zA-Z0-9]+$/; // Expresión regular para validar DOI 
 const CURRENT_YM = new Date().toISOString().slice(0, 7); // recoge de la fecha actual año-mes(yyyy-mm) para luego validr fecha de publicacion 
 const MOJIBAKE = /Ã|â€|Â|&amp;|�/;  // restos de UTF-8 mal decodificado (Ã­, â€“, &amp;...)
+//------para validar href/src seguros (anti-XSS: bloquea javascript:, data:, //externo)--------------
+const SAFE_HREF = /^(https:\/\/|mailto:|\/(?![/\\]))/; // https externo, email o ruta interna (no "//" ni "/\")
 const citationText = z.string().trim().min(1).refine((s) => !MOJIBAKE.test(s), 'Cita con mojibake');  // base común para todos los formatos
 
 //------para validación de PERIODOS DE projects--------------
@@ -32,11 +34,11 @@ const userCollection = defineCollection({
     name: z.string(),
     role: z.string(),
     university: z.string(),
-    universityLink: z.string().url(), //valida que sea un URL válido
+    universityLink: z.url({ protocol: /^https$/}), //valida que sea un URL válido
     avatar: z.string(),
     shortBio: z.string().max(150), // límite funcional: bio del ProfileHeader no puede superar 150 caracteres
     longBio: z.array(z.string().trim().min(1)).min(1), // bio larga: un string por párrafo, sin párrafos vacíos
-    email: z.string().email(),
+    email: z.email(),
     cv: z.string(),
     skills:z.array(
       z.string().trim().min(1)).default([]),                                 //lista simple de habilidades (ej. MATLAB, R); default sin skills, la sección no se pinta si no hay skills
@@ -62,7 +64,7 @@ const userCollection = defineCollection({
       z.object({
         id: z.string(),                                                     // Agregar un campo "id" para cada publicación, Escalable con Nest.js.(repeatable, future CRUD/DB rows)
         name: z.string(),
-        url: z.string(),
+        url: z.string().trim().regex(SAFE_HREF, 'url debe empezar por https://'), 
         icon: z.string().optional()
       })
     ),
@@ -90,7 +92,7 @@ const publicationsCollection = defineCollection({
       message: `isMe solo para: ${MY_NAMES.join(' / ')}`,
     })).min(1),
      journal: z.string().trim().min(1),
-     url: z.string().trim().url().optional(), // sustituye al DOI cuando no hay (PMC o web de la revista)
+     url: z.url({ protocol: /^https$/}).optional(), // sustituye al DOI cuando no hay (PMC o web de la revista)
      abstract: z.string().trim().optional(),
      image: z.string().trim().optional(),
       citations: z.object({
