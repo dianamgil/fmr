@@ -23,7 +23,7 @@
     { "id":"email_link","name": "Email", "url": "mailto:fernando.martin-rivera@uv.es", "icon": "email" },
     { "id":"cv_link","name": "CV", "url": "/documents/cv_fmartinr.pdf", "icon": "file-account"},
     { "id":"in_link","name": "LinkedIn", "url": "https://es.linkedin.com/in/fernando-martin-rivera-88615835", "icon": "linkedin" },
-    { "id": "facebook_link", "name": "Facebook", "url": "https://www.facebook.com/fernando.martinrivera/", "icon": "facebook", "displayAs": ["icon"] }
+    { "id": "facebook_link", "name": "Facebook", "url": "https://www.facebook.com/fernando.martinrivera/", "icon": "facebook"}
     
   ],
 
