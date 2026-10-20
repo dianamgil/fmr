@@ -10,13 +10,15 @@ export interface Props{
 
 const {user} = Astro.props; 
 
+const currentPath = Astro.url.pathname; //para saber en que página estamos y resaltar el link correspondiente
 const nav = [
-  
-  { label: 'ACERCA DE MÍ', href: 'bio' },
-  { label: 'DOCENCIA', href: 'teaching' },
-  { label: 'INVESTIGACIÓN', href: 'research' },
-  { label: 'PUBLICACIONES', href: 'publications' },
+ 
+  { label: 'ACERCA DE MÍ', href: '/aboutme/bio' },
+  { label: 'DOCENCIA', href: '/aboutme/teaching' },
+  { label: 'INVESTIGACIÓN', href: '/aboutme/research' },
+  { label: 'PUBLICACIONES', href: '/aboutme/publications' },
 ];
+
 ---
 
 
@@ -82,7 +84,16 @@ const nav = [
          <!-- bloque 2  Navegación -->
     <nav class="flex flex-col gap-2 pb-6 border-b-3 border-white/40">
          {nav.map((item) => (
-            <a href={item.href} class="text-slate-600 font-semibold hover:text-white">{item.label}</a>
+           <a 
+           href={item.href}
+            aria-current={currentPath === item.href ? 'page' : undefined}
+            class=" self-start px-3 py-1 rounded-full text-slate-600 font-semibold
+              hover:text-white
+              aria-[current=page]:bg-white aria-[current=page]:shadow-sm 
+              aria-[current=page]:hover:text-slate-600"
+              >
+              {item.label} </a>
+
             ))}
     </nav>
 <!-- bloque 3  BOTONES DE rrss -->
